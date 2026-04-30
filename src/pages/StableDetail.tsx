@@ -8,7 +8,8 @@ import { RatingsSection } from "@/components/reviews/RatingsSection";
 import { ReviewModal } from "@/components/reviews/ReviewModal";
 
 const StableDetail = () => {
-  const { id } = useParams<{ id: string }>();
+  const params = useParams<{ id?: string; stableId?: string }>();
+  const id = params.id ?? params.stableId;
   const [reviewOpen, setReviewOpen] = useState(false);
   const stable = stables.find((s) => s.id === id);
   if (!stable) return <Navigate to="/stables" replace />;

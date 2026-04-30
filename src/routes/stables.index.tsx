@@ -25,7 +25,7 @@ const searchSchema = z.object({
   view: z.enum(["stables", "horses"]).optional(),
 });
 
-export const Route = createFileRoute("/stables")({
+export const Route = createFileRoute("/stables/")({
   validateSearch: searchSchema,
   head: () => ({
     meta: [
@@ -66,7 +66,10 @@ function StablesPage() {
   const { data: locations } = useLocations();
 
   const update = (next: Partial<typeof search>) =>
-    navigate({ search: (prev: typeof search) => ({ ...prev, ...next }) as typeof search });
+    navigate({ search: (prev: typeof search) => (({;
+      ...prev,;
+      ...next;
+    }) as typeof search) });
 
   return (
     <SiteLayout>

@@ -34,7 +34,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 );
 Link.displayName = "Link";
 
-type NavLinkProps = LinkProps & {
+type NavLinkProps = Omit<LinkProps, "className" | "children"> & {
   className?:
     | string
     | ((args: { isActive: boolean; isPending: boolean }) => string);

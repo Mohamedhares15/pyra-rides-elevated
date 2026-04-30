@@ -47,24 +47,27 @@ type NavLinkProps = LinkProps & {
 export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
   ({ to, className, children, end, ...rest }, ref) => {
     const Anchor = TSLink as unknown as React.ComponentType<any>;
+    const cls = (args: any) => {
+      const ctx = { isActive: !!args?.isActive, isPending: false };
+      return typeof className === "function" ? (className as any)(ctx) : className;
+    };
+    const kids =
+      typeof children === "function"
+        ? (renderArgs: any) =>
+            (children as any)({
+              isActive: !!renderArgs?.isActive,
+              isPending: false,
+            })
+        : children;
     return (
       <Anchor
         ref={ref}
         to={to}
         activeOptions={{ exact: !!end }}
         {...rest}
-        className={(args: { isActive: boolean }) => {
-          const ctx = { isActive: !!args?.isActive, isPending: false };
-          return typeof className === "function" ? className(ctx) : className;
-        }}
+        className={cls}
       >
-        {typeof children === "function"
-          ? (renderArgs: { isActive: boolean }) =>
-              (children as any)({
-                isActive: !!renderArgs?.isActive,
-                isPending: false,
-              })
-          : children}
+        {kids as any}
       </Anchor>
     );
   },
@@ -83,7 +86,7 @@ export const useLocation = () => {
 };
 
 export const useParams = <T extends Record<string, string | undefined>>() =>
-  useTSParams({ strict: false }) as T;
+  (useTSParams as any)({ strict: false }) as T;
 
 export const useNavigate = () => {
   const nav = useTSNavigate();

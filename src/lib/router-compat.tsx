@@ -16,6 +16,16 @@ import {
 
 export const Outlet = TSOutlet;
 
+/** react-router-dom-style declarative redirect. */
+export const Navigate = ({ to, replace }: { to: string; replace?: boolean }) => {
+  const nav = useTSNavigate();
+  // Trigger after render to avoid setState-during-render warnings.
+  if (typeof window !== "undefined") {
+    queueMicrotask(() => nav({ to: to as any, replace }));
+  }
+  return null;
+};
+
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   to: string;
   replace?: boolean;

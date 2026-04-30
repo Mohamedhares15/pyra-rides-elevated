@@ -15,14 +15,23 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CercleRouteImport } from './routes/cercle'
 import { Route as BookingRouteImport } from './routes/booking'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as StablesIndexRouteImport } from './routes/stables.index'
 import { Route as PackagesIndexRouteImport } from './routes/packages.index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as CheckoutIndexRouteImport } from './routes/checkout.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as StablesIdRouteImport } from './routes/stables.$id'
 import { Route as PackagesIdRouteImport } from './routes/packages.$id'
+import { Route as DashboardDriverRouteImport } from './routes/dashboard.driver'
+import { Route as DashboardCxMediaRouteImport } from './routes/dashboard.cx-media'
+import { Route as DashboardCaptainRouteImport } from './routes/dashboard.captain'
+import { Route as DashboardAdminRouteImport } from './routes/dashboard.admin'
+import { Route as AdminScheduleRouteImport } from './routes/admin.schedule'
+import { Route as AdminHorsesRouteImport } from './routes/admin.horses'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 import { Route as CheckoutPackageIdRouteImport } from './routes/checkout.package.$id'
 
 const TrainingRoute = TrainingRouteImport.update({
@@ -55,6 +64,11 @@ const BookingRoute = BookingRouteImport.update({
   path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -85,6 +99,11 @@ const CheckoutIndexRoute = CheckoutIndexRouteImport.update({
   path: '/checkout/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StablesIdRoute = StablesIdRouteImport.update({
   id: '/stables/$id',
   path: '/stables/$id',
@@ -93,6 +112,41 @@ const StablesIdRoute = StablesIdRouteImport.update({
 const PackagesIdRoute = PackagesIdRouteImport.update({
   id: '/packages/$id',
   path: '/packages/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardDriverRoute = DashboardDriverRouteImport.update({
+  id: '/dashboard/driver',
+  path: '/dashboard/driver',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardCxMediaRoute = DashboardCxMediaRouteImport.update({
+  id: '/dashboard/cx-media',
+  path: '/dashboard/cx-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardCaptainRoute = DashboardCaptainRouteImport.update({
+  id: '/dashboard/captain',
+  path: '/dashboard/captain',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardAdminRoute = DashboardAdminRouteImport.update({
+  id: '/dashboard/admin',
+  path: '/dashboard/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminScheduleRoute = AdminScheduleRouteImport.update({
+  id: '/admin/schedule',
+  path: '/admin/schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminHorsesRoute = AdminHorsesRouteImport.update({
+  id: '/admin/horses',
+  path: '/admin/horses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/admin/analytics',
+  path: '/admin/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutPackageIdRoute = CheckoutPackageIdRouteImport.update({
@@ -104,14 +158,23 @@ const CheckoutPackageIdRoute = CheckoutPackageIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/booking': typeof BookingRoute
   '/cercle': typeof CercleRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/reviews': typeof ReviewsRoute
   '/training': typeof TrainingRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/horses': typeof AdminHorsesRoute
+  '/admin/schedule': typeof AdminScheduleRoute
+  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/captain': typeof DashboardCaptainRoute
+  '/dashboard/cx-media': typeof DashboardCxMediaRoute
+  '/dashboard/driver': typeof DashboardDriverRoute
   '/packages/$id': typeof PackagesIdRoute
   '/stables/$id': typeof StablesIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/checkout/': typeof CheckoutIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/packages/': typeof PackagesIndexRoute
@@ -121,14 +184,23 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/booking': typeof BookingRoute
   '/cercle': typeof CercleRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/reviews': typeof ReviewsRoute
   '/training': typeof TrainingRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/horses': typeof AdminHorsesRoute
+  '/admin/schedule': typeof AdminScheduleRoute
+  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/captain': typeof DashboardCaptainRoute
+  '/dashboard/cx-media': typeof DashboardCxMediaRoute
+  '/dashboard/driver': typeof DashboardDriverRoute
   '/packages/$id': typeof PackagesIdRoute
   '/stables/$id': typeof StablesIdRoute
+  '/admin': typeof AdminIndexRoute
   '/checkout': typeof CheckoutIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/packages': typeof PackagesIndexRoute
@@ -139,14 +211,23 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/booking': typeof BookingRoute
   '/cercle': typeof CercleRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/reviews': typeof ReviewsRoute
   '/training': typeof TrainingRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/horses': typeof AdminHorsesRoute
+  '/admin/schedule': typeof AdminScheduleRoute
+  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/captain': typeof DashboardCaptainRoute
+  '/dashboard/cx-media': typeof DashboardCxMediaRoute
+  '/dashboard/driver': typeof DashboardDriverRoute
   '/packages/$id': typeof PackagesIdRoute
   '/stables/$id': typeof StablesIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/checkout/': typeof CheckoutIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/packages/': typeof PackagesIndexRoute
@@ -158,14 +239,23 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/auth'
     | '/booking'
     | '/cercle'
     | '/faq'
     | '/gallery'
     | '/reviews'
     | '/training'
+    | '/admin/analytics'
+    | '/admin/horses'
+    | '/admin/schedule'
+    | '/dashboard/admin'
+    | '/dashboard/captain'
+    | '/dashboard/cx-media'
+    | '/dashboard/driver'
     | '/packages/$id'
     | '/stables/$id'
+    | '/admin/'
     | '/checkout/'
     | '/dashboard/'
     | '/packages/'
@@ -175,14 +265,23 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/auth'
     | '/booking'
     | '/cercle'
     | '/faq'
     | '/gallery'
     | '/reviews'
     | '/training'
+    | '/admin/analytics'
+    | '/admin/horses'
+    | '/admin/schedule'
+    | '/dashboard/admin'
+    | '/dashboard/captain'
+    | '/dashboard/cx-media'
+    | '/dashboard/driver'
     | '/packages/$id'
     | '/stables/$id'
+    | '/admin'
     | '/checkout'
     | '/dashboard'
     | '/packages'
@@ -192,14 +291,23 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/auth'
     | '/booking'
     | '/cercle'
     | '/faq'
     | '/gallery'
     | '/reviews'
     | '/training'
+    | '/admin/analytics'
+    | '/admin/horses'
+    | '/admin/schedule'
+    | '/dashboard/admin'
+    | '/dashboard/captain'
+    | '/dashboard/cx-media'
+    | '/dashboard/driver'
     | '/packages/$id'
     | '/stables/$id'
+    | '/admin/'
     | '/checkout/'
     | '/dashboard/'
     | '/packages/'
@@ -210,14 +318,23 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
   BookingRoute: typeof BookingRoute
   CercleRoute: typeof CercleRoute
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   ReviewsRoute: typeof ReviewsRoute
   TrainingRoute: typeof TrainingRoute
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminHorsesRoute: typeof AdminHorsesRoute
+  AdminScheduleRoute: typeof AdminScheduleRoute
+  DashboardAdminRoute: typeof DashboardAdminRoute
+  DashboardCaptainRoute: typeof DashboardCaptainRoute
+  DashboardCxMediaRoute: typeof DashboardCxMediaRoute
+  DashboardDriverRoute: typeof DashboardDriverRoute
   PackagesIdRoute: typeof PackagesIdRoute
   StablesIdRoute: typeof StablesIdRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   CheckoutIndexRoute: typeof CheckoutIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   PackagesIndexRoute: typeof PackagesIndexRoute
@@ -269,6 +386,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -311,6 +435,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/stables/$id': {
       id: '/stables/$id'
       path: '/stables/$id'
@@ -323,6 +454,55 @@ declare module '@tanstack/react-router' {
       path: '/packages/$id'
       fullPath: '/packages/$id'
       preLoaderRoute: typeof PackagesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/driver': {
+      id: '/dashboard/driver'
+      path: '/dashboard/driver'
+      fullPath: '/dashboard/driver'
+      preLoaderRoute: typeof DashboardDriverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/cx-media': {
+      id: '/dashboard/cx-media'
+      path: '/dashboard/cx-media'
+      fullPath: '/dashboard/cx-media'
+      preLoaderRoute: typeof DashboardCxMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/captain': {
+      id: '/dashboard/captain'
+      path: '/dashboard/captain'
+      fullPath: '/dashboard/captain'
+      preLoaderRoute: typeof DashboardCaptainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/admin': {
+      id: '/dashboard/admin'
+      path: '/dashboard/admin'
+      fullPath: '/dashboard/admin'
+      preLoaderRoute: typeof DashboardAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/schedule': {
+      id: '/admin/schedule'
+      path: '/admin/schedule'
+      fullPath: '/admin/schedule'
+      preLoaderRoute: typeof AdminScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/horses': {
+      id: '/admin/horses'
+      path: '/admin/horses'
+      fullPath: '/admin/horses'
+      preLoaderRoute: typeof AdminHorsesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/admin/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout/package/$id': {
@@ -338,14 +518,23 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
   BookingRoute: BookingRoute,
   CercleRoute: CercleRoute,
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   ReviewsRoute: ReviewsRoute,
   TrainingRoute: TrainingRoute,
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminHorsesRoute: AdminHorsesRoute,
+  AdminScheduleRoute: AdminScheduleRoute,
+  DashboardAdminRoute: DashboardAdminRoute,
+  DashboardCaptainRoute: DashboardCaptainRoute,
+  DashboardCxMediaRoute: DashboardCxMediaRoute,
+  DashboardDriverRoute: DashboardDriverRoute,
   PackagesIdRoute: PackagesIdRoute,
   StablesIdRoute: StablesIdRoute,
+  AdminIndexRoute: AdminIndexRoute,
   CheckoutIndexRoute: CheckoutIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   PackagesIndexRoute: PackagesIndexRoute,
@@ -355,12 +544,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

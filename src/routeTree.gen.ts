@@ -18,6 +18,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as OfflineRouteImport } from './routes/offline'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
@@ -37,6 +38,8 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as UsersIdRouteImport } from './routes/users.$id'
 import { Route as StablesIdRouteImport } from './routes/stables.$id'
 import { Route as SStableIdRouteImport } from './routes/s.$stableId'
+import { Route as PaymentSuccessRouteImport } from './routes/payment.success'
+import { Route as PaymentCancelRouteImport } from './routes/payment.cancel'
 import { Route as PackagesIdRouteImport } from './routes/packages.$id'
 import { Route as DashboardRiderRouteImport } from './routes/dashboard.rider'
 import { Route as DashboardLoyaltyRouteImport } from './routes/dashboard.loyalty'
@@ -93,6 +96,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OfflineRoute = OfflineRouteImport.update({
+  id: '/offline',
+  path: '/offline',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LeaderboardRoute = LeaderboardRouteImport.update({
@@ -190,6 +198,16 @@ const SStableIdRoute = SStableIdRouteImport.update({
   path: '/s/$stableId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaymentSuccessRoute = PaymentSuccessRouteImport.update({
+  id: '/payment/success',
+  path: '/payment/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaymentCancelRoute = PaymentCancelRouteImport.update({
+  id: '/payment/cancel',
+  path: '/payment/cancel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PackagesIdRoute = PackagesIdRouteImport.update({
   id: '/packages/$id',
   path: '/packages/$id',
@@ -263,6 +281,7 @@ export interface FileRoutesByFullPath {
   '/forgot-password': typeof ForgotPasswordRoute
   '/gallery': typeof GalleryRoute
   '/leaderboard': typeof LeaderboardRoute
+  '/offline': typeof OfflineRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -283,6 +302,8 @@ export interface FileRoutesByFullPath {
   '/dashboard/loyalty': typeof DashboardLoyaltyRoute
   '/dashboard/rider': typeof DashboardRiderRoute
   '/packages/$id': typeof PackagesIdRoute
+  '/payment/cancel': typeof PaymentCancelRoute
+  '/payment/success': typeof PaymentSuccessRoute
   '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
   '/users/$id': typeof UsersIdRoute
@@ -305,6 +326,7 @@ export interface FileRoutesByTo {
   '/forgot-password': typeof ForgotPasswordRoute
   '/gallery': typeof GalleryRoute
   '/leaderboard': typeof LeaderboardRoute
+  '/offline': typeof OfflineRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -325,6 +347,8 @@ export interface FileRoutesByTo {
   '/dashboard/loyalty': typeof DashboardLoyaltyRoute
   '/dashboard/rider': typeof DashboardRiderRoute
   '/packages/$id': typeof PackagesIdRoute
+  '/payment/cancel': typeof PaymentCancelRoute
+  '/payment/success': typeof PaymentSuccessRoute
   '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
   '/users/$id': typeof UsersIdRoute
@@ -348,6 +372,7 @@ export interface FileRoutesById {
   '/forgot-password': typeof ForgotPasswordRoute
   '/gallery': typeof GalleryRoute
   '/leaderboard': typeof LeaderboardRoute
+  '/offline': typeof OfflineRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -368,6 +393,8 @@ export interface FileRoutesById {
   '/dashboard/loyalty': typeof DashboardLoyaltyRoute
   '/dashboard/rider': typeof DashboardRiderRoute
   '/packages/$id': typeof PackagesIdRoute
+  '/payment/cancel': typeof PaymentCancelRoute
+  '/payment/success': typeof PaymentSuccessRoute
   '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
   '/users/$id': typeof UsersIdRoute
@@ -392,6 +419,7 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/gallery'
     | '/leaderboard'
+    | '/offline'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
@@ -412,6 +440,8 @@ export interface FileRouteTypes {
     | '/dashboard/loyalty'
     | '/dashboard/rider'
     | '/packages/$id'
+    | '/payment/cancel'
+    | '/payment/success'
     | '/s/$stableId'
     | '/stables/$id'
     | '/users/$id'
@@ -434,6 +464,7 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/gallery'
     | '/leaderboard'
+    | '/offline'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
@@ -454,6 +485,8 @@ export interface FileRouteTypes {
     | '/dashboard/loyalty'
     | '/dashboard/rider'
     | '/packages/$id'
+    | '/payment/cancel'
+    | '/payment/success'
     | '/s/$stableId'
     | '/stables/$id'
     | '/users/$id'
@@ -476,6 +509,7 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/gallery'
     | '/leaderboard'
+    | '/offline'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
@@ -496,6 +530,8 @@ export interface FileRouteTypes {
     | '/dashboard/loyalty'
     | '/dashboard/rider'
     | '/packages/$id'
+    | '/payment/cancel'
+    | '/payment/success'
     | '/s/$stableId'
     | '/stables/$id'
     | '/users/$id'
@@ -519,6 +555,7 @@ export interface RootRouteChildren {
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   GalleryRoute: typeof GalleryRoute
   LeaderboardRoute: typeof LeaderboardRoute
+  OfflineRoute: typeof OfflineRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
@@ -538,6 +575,8 @@ export interface RootRouteChildren {
   DashboardLoyaltyRoute: typeof DashboardLoyaltyRoute
   DashboardRiderRoute: typeof DashboardRiderRoute
   PackagesIdRoute: typeof PackagesIdRoute
+  PaymentCancelRoute: typeof PaymentCancelRoute
+  PaymentSuccessRoute: typeof PaymentSuccessRoute
   SStableIdRoute: typeof SStableIdRoute
   StablesIdRoute: typeof StablesIdRoute
   UsersIdRoute: typeof UsersIdRoute
@@ -612,6 +651,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/offline': {
+      id: '/offline'
+      path: '/offline'
+      fullPath: '/offline'
+      preLoaderRoute: typeof OfflineRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/leaderboard': {
@@ -747,6 +793,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SStableIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/payment/success': {
+      id: '/payment/success'
+      path: '/payment/success'
+      fullPath: '/payment/success'
+      preLoaderRoute: typeof PaymentSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/payment/cancel': {
+      id: '/payment/cancel'
+      path: '/payment/cancel'
+      fullPath: '/payment/cancel'
+      preLoaderRoute: typeof PaymentCancelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/packages/$id': {
       id: '/packages/$id'
       path: '/packages/$id'
@@ -856,6 +916,7 @@ const rootRouteChildren: RootRouteChildren = {
   ForgotPasswordRoute: ForgotPasswordRoute,
   GalleryRoute: GalleryRoute,
   LeaderboardRoute: LeaderboardRoute,
+  OfflineRoute: OfflineRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
@@ -875,6 +936,8 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardLoyaltyRoute: DashboardLoyaltyRoute,
   DashboardRiderRoute: DashboardRiderRoute,
   PackagesIdRoute: PackagesIdRoute,
+  PaymentCancelRoute: PaymentCancelRoute,
+  PaymentSuccessRoute: PaymentSuccessRoute,
   SStableIdRoute: SStableIdRoute,
   StablesIdRoute: StablesIdRoute,
   UsersIdRoute: UsersIdRoute,

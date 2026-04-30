@@ -3,6 +3,7 @@ import { QueryClient } from "@tanstack/react-query";
 import { routeTree } from "./routeTree.gen";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
+import { PageLoader } from "@/components/shared/Skeletons";
 
 function DefaultErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
@@ -46,6 +47,9 @@ export const getRouter = () => {
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
     defaultErrorComponent: DefaultErrorComponent,
+    defaultPendingComponent: () => <PageLoader label="Loading" />,
+    defaultPendingMs: 300,
+    defaultPendingMinMs: 400,
   });
 
   return router;

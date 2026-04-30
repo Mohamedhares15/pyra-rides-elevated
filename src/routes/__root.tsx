@@ -1,47 +1,65 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
+import { Button } from "@/components/ui/button";
+
+interface RouterContext {
+  queryClient: QueryClient;
+}
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+        <p className="text-[11px] tracking-luxury uppercase ink-muted">Error 404</p>
+        <h1 className="mt-3 font-display text-6xl text-foreground">Off the trail.</h1>
+        <p className="mt-4 text-sm ink-muted">
+          The page you're looking for doesn't exist. The plateau is wide — let us guide you back.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
+        <div className="mt-8 flex items-center justify-center gap-3">
+          <Button asChild>
+            <Link to="/">Return home</Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link to="/stables">Browse stables</Link>
+          </Button>
         </div>
       </div>
     </div>
   );
 }
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<RouterContext>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+      { name: "theme-color", content: "#F5F5DC" },
+      { title: "PyraRides — Ride at the Pyramids" },
+      {
+        name: "description",
+        content:
+          "Egypt's first online marketplace for booking horse riding experiences at the Giza and Saqqara Pyramids. Eight stables. Two hundred horses. One unforgettable plateau.",
+      },
+      { name: "author", content: "PyraRides" },
+      { property: "og:title", content: "PyraRides — Ride at the Pyramids" },
+      {
+        property: "og:description",
+        content: "Book a horse and ride past the Great Pyramids. Verified stables, trained horses, modern booking.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@pyrarides" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap",
       },
     ],
   }),
@@ -65,5 +83,19 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  const { queryClient } = Route.useRouteContext();
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Outlet />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          classNames: {
+            toast: "!bg-surface-elevated !border !border-hairline !text-foreground !rounded-sm !font-sans",
+            description: "!text-[oklch(0.52_0.025_158)]",
+          },
+        }}
+      />
+    </QueryClientProvider>
+  );
 }

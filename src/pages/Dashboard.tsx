@@ -35,9 +35,17 @@ const Dashboard = () => {
         <p className="text-[11px] tracking-luxury uppercase text-ink-muted mb-4">Your private ledger</p>
         <div className="flex items-end justify-between gap-6 flex-wrap">
           <h1 className="font-display text-5xl md:text-7xl leading-[1] text-balance">Good morning, Yasmine.</h1>
-          <Link to="/booking" className="inline-flex items-center gap-3 px-6 py-3.5 bg-foreground text-background text-[12px] tracking-[0.18em] uppercase group">
-            Reserve another <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link to="/chat" className="inline-flex items-center gap-2 px-5 py-3 border hairline text-[11px] tracking-[0.18em] uppercase hover:bg-foreground hover:text-background hover:border-foreground transition-colors">
+              Correspondence
+            </Link>
+            <Link to="/dashboard/loyalty" className="inline-flex items-center gap-2 px-5 py-3 border hairline text-[11px] tracking-[0.18em] uppercase hover:bg-foreground hover:text-background hover:border-foreground transition-colors">
+              Le Cercle
+            </Link>
+            <Link to="/booking" className="inline-flex items-center gap-3 px-6 py-3.5 bg-foreground text-background text-[12px] tracking-[0.18em] uppercase group">
+              Reserve another <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
         </div>
       </Reveal>
 

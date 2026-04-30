@@ -7,11 +7,14 @@
 import { forwardRef, type AnchorHTMLAttributes, type ReactNode } from "react";
 import {
   Link as TSLink,
+  Outlet as TSOutlet,
   useLocation as useTSLocation,
   useNavigate as useTSNavigate,
   useParams as useTSParams,
   useRouter,
 } from "@tanstack/react-router";
+
+export const Outlet = TSOutlet;
 
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   to: string;

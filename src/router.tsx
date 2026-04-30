@@ -47,6 +47,9 @@ export const getRouter = () => {
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
     defaultErrorComponent: DefaultErrorComponent,
+    defaultPendingComponent: () => <PageLoader label="Loading" />,
+    defaultPendingMs: 300,
+    defaultPendingMinMs: 400,
   });
 
   return router;

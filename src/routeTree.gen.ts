@@ -50,11 +50,17 @@ import { Route as AuthSwitchRouteImport } from './routes/auth.switch'
 import { Route as AdminScheduleRouteImport } from './routes/admin.schedule'
 import { Route as AdminHorsesRouteImport } from './routes/admin.horses'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
+import { Route as TrainingAcademyIdIndexRouteImport } from './routes/training.$academyId.index'
 import { Route as DashboardStableIndexRouteImport } from './routes/dashboard.stable.index'
+import { Route as DashboardDriverIndexRouteImport } from './routes/dashboard.driver.index'
+import { Route as TrainingAcademyIdCheckoutRouteImport } from './routes/training.$academyId.checkout'
 import { Route as DashboardStableScheduleRouteImport } from './routes/dashboard.stable.schedule'
 import { Route as DashboardStableOsRouteImport } from './routes/dashboard.stable.os'
 import { Route as DashboardStableManageRouteImport } from './routes/dashboard.stable.manage'
 import { Route as DashboardStableHorsesRouteImport } from './routes/dashboard.stable.horses'
+import { Route as DashboardDriverHistoryRouteImport } from './routes/dashboard.driver.history'
+import { Route as DashboardDriverActiveRouteImport } from './routes/dashboard.driver.active'
+import { Route as DashboardDriverAccountRouteImport } from './routes/dashboard.driver.account'
 import { Route as CheckoutPackageIdRouteImport } from './routes/checkout.package.$id'
 
 const TrainingRoute = TrainingRouteImport.update({
@@ -262,11 +268,27 @@ const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
   path: '/admin/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrainingAcademyIdIndexRoute = TrainingAcademyIdIndexRouteImport.update({
+  id: '/$academyId/',
+  path: '/$academyId/',
+  getParentRoute: () => TrainingRoute,
+} as any)
 const DashboardStableIndexRoute = DashboardStableIndexRouteImport.update({
   id: '/dashboard/stable/',
   path: '/dashboard/stable/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardDriverIndexRoute = DashboardDriverIndexRouteImport.update({
+  id: '/dashboard/driver/',
+  path: '/dashboard/driver/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrainingAcademyIdCheckoutRoute =
+  TrainingAcademyIdCheckoutRouteImport.update({
+    id: '/$academyId/checkout',
+    path: '/$academyId/checkout',
+    getParentRoute: () => TrainingRoute,
+  } as any)
 const DashboardStableScheduleRoute = DashboardStableScheduleRouteImport.update({
   id: '/dashboard/stable/schedule',
   path: '/dashboard/stable/schedule',
@@ -285,6 +307,21 @@ const DashboardStableManageRoute = DashboardStableManageRouteImport.update({
 const DashboardStableHorsesRoute = DashboardStableHorsesRouteImport.update({
   id: '/dashboard/stable/horses',
   path: '/dashboard/stable/horses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardDriverHistoryRoute = DashboardDriverHistoryRouteImport.update({
+  id: '/dashboard/driver/history',
+  path: '/dashboard/driver/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardDriverActiveRoute = DashboardDriverActiveRouteImport.update({
+  id: '/dashboard/driver/active',
+  path: '/dashboard/driver/active',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardDriverAccountRoute = DashboardDriverAccountRouteImport.update({
+  id: '/dashboard/driver/account',
+  path: '/dashboard/driver/account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutPackageIdRoute = CheckoutPackageIdRouteImport.update({
@@ -314,7 +351,7 @@ export interface FileRoutesByFullPath {
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
-  '/training': typeof TrainingRoute
+  '/training': typeof TrainingRouteWithChildren
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/horses': typeof AdminHorsesRoute
   '/admin/schedule': typeof AdminScheduleRoute
@@ -336,11 +373,17 @@ export interface FileRoutesByFullPath {
   '/packages/': typeof PackagesIndexRoute
   '/stables/': typeof StablesIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
+  '/dashboard/driver/account': typeof DashboardDriverAccountRoute
+  '/dashboard/driver/active': typeof DashboardDriverActiveRoute
+  '/dashboard/driver/history': typeof DashboardDriverHistoryRoute
   '/dashboard/stable/horses': typeof DashboardStableHorsesRoute
   '/dashboard/stable/manage': typeof DashboardStableManageRoute
   '/dashboard/stable/os': typeof DashboardStableOsRoute
   '/dashboard/stable/schedule': typeof DashboardStableScheduleRoute
+  '/training/$academyId/checkout': typeof TrainingAcademyIdCheckoutRoute
+  '/dashboard/driver/': typeof DashboardDriverIndexRoute
   '/dashboard/stable/': typeof DashboardStableIndexRoute
+  '/training/$academyId/': typeof TrainingAcademyIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -363,7 +406,7 @@ export interface FileRoutesByTo {
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
-  '/training': typeof TrainingRoute
+  '/training': typeof TrainingRouteWithChildren
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/horses': typeof AdminHorsesRoute
   '/admin/schedule': typeof AdminScheduleRoute
@@ -385,11 +428,17 @@ export interface FileRoutesByTo {
   '/packages': typeof PackagesIndexRoute
   '/stables': typeof StablesIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
+  '/dashboard/driver/account': typeof DashboardDriverAccountRoute
+  '/dashboard/driver/active': typeof DashboardDriverActiveRoute
+  '/dashboard/driver/history': typeof DashboardDriverHistoryRoute
   '/dashboard/stable/horses': typeof DashboardStableHorsesRoute
   '/dashboard/stable/manage': typeof DashboardStableManageRoute
   '/dashboard/stable/os': typeof DashboardStableOsRoute
   '/dashboard/stable/schedule': typeof DashboardStableScheduleRoute
+  '/training/$academyId/checkout': typeof TrainingAcademyIdCheckoutRoute
+  '/dashboard/driver': typeof DashboardDriverIndexRoute
   '/dashboard/stable': typeof DashboardStableIndexRoute
+  '/training/$academyId': typeof TrainingAcademyIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -413,7 +462,7 @@ export interface FileRoutesById {
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
-  '/training': typeof TrainingRoute
+  '/training': typeof TrainingRouteWithChildren
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/horses': typeof AdminHorsesRoute
   '/admin/schedule': typeof AdminScheduleRoute
@@ -435,11 +484,17 @@ export interface FileRoutesById {
   '/packages/': typeof PackagesIndexRoute
   '/stables/': typeof StablesIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
+  '/dashboard/driver/account': typeof DashboardDriverAccountRoute
+  '/dashboard/driver/active': typeof DashboardDriverActiveRoute
+  '/dashboard/driver/history': typeof DashboardDriverHistoryRoute
   '/dashboard/stable/horses': typeof DashboardStableHorsesRoute
   '/dashboard/stable/manage': typeof DashboardStableManageRoute
   '/dashboard/stable/os': typeof DashboardStableOsRoute
   '/dashboard/stable/schedule': typeof DashboardStableScheduleRoute
+  '/training/$academyId/checkout': typeof TrainingAcademyIdCheckoutRoute
+  '/dashboard/driver/': typeof DashboardDriverIndexRoute
   '/dashboard/stable/': typeof DashboardStableIndexRoute
+  '/training/$academyId/': typeof TrainingAcademyIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -486,11 +541,17 @@ export interface FileRouteTypes {
     | '/packages/'
     | '/stables/'
     | '/checkout/package/$id'
+    | '/dashboard/driver/account'
+    | '/dashboard/driver/active'
+    | '/dashboard/driver/history'
     | '/dashboard/stable/horses'
     | '/dashboard/stable/manage'
     | '/dashboard/stable/os'
     | '/dashboard/stable/schedule'
+    | '/training/$academyId/checkout'
+    | '/dashboard/driver/'
     | '/dashboard/stable/'
+    | '/training/$academyId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -535,11 +596,17 @@ export interface FileRouteTypes {
     | '/packages'
     | '/stables'
     | '/checkout/package/$id'
+    | '/dashboard/driver/account'
+    | '/dashboard/driver/active'
+    | '/dashboard/driver/history'
     | '/dashboard/stable/horses'
     | '/dashboard/stable/manage'
     | '/dashboard/stable/os'
     | '/dashboard/stable/schedule'
+    | '/training/$academyId/checkout'
+    | '/dashboard/driver'
     | '/dashboard/stable'
+    | '/training/$academyId'
   id:
     | '__root__'
     | '/'
@@ -584,11 +651,17 @@ export interface FileRouteTypes {
     | '/packages/'
     | '/stables/'
     | '/checkout/package/$id'
+    | '/dashboard/driver/account'
+    | '/dashboard/driver/active'
+    | '/dashboard/driver/history'
     | '/dashboard/stable/horses'
     | '/dashboard/stable/manage'
     | '/dashboard/stable/os'
     | '/dashboard/stable/schedule'
+    | '/training/$academyId/checkout'
+    | '/dashboard/driver/'
     | '/dashboard/stable/'
+    | '/training/$academyId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -612,7 +685,7 @@ export interface RootRouteChildren {
   SigninRoute: typeof SigninRoute
   SignupRoute: typeof SignupRoute
   TermsRoute: typeof TermsRoute
-  TrainingRoute: typeof TrainingRoute
+  TrainingRoute: typeof TrainingRouteWithChildren
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminHorsesRoute: typeof AdminHorsesRoute
   AdminScheduleRoute: typeof AdminScheduleRoute
@@ -633,10 +706,14 @@ export interface RootRouteChildren {
   PackagesIndexRoute: typeof PackagesIndexRoute
   StablesIndexRoute: typeof StablesIndexRoute
   CheckoutPackageIdRoute: typeof CheckoutPackageIdRoute
+  DashboardDriverAccountRoute: typeof DashboardDriverAccountRoute
+  DashboardDriverActiveRoute: typeof DashboardDriverActiveRoute
+  DashboardDriverHistoryRoute: typeof DashboardDriverHistoryRoute
   DashboardStableHorsesRoute: typeof DashboardStableHorsesRoute
   DashboardStableManageRoute: typeof DashboardStableManageRoute
   DashboardStableOsRoute: typeof DashboardStableOsRoute
   DashboardStableScheduleRoute: typeof DashboardStableScheduleRoute
+  DashboardDriverIndexRoute: typeof DashboardDriverIndexRoute
   DashboardStableIndexRoute: typeof DashboardStableIndexRoute
 }
 
@@ -929,12 +1006,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/training/$academyId/': {
+      id: '/training/$academyId/'
+      path: '/$academyId'
+      fullPath: '/training/$academyId/'
+      preLoaderRoute: typeof TrainingAcademyIdIndexRouteImport
+      parentRoute: typeof TrainingRoute
+    }
     '/dashboard/stable/': {
       id: '/dashboard/stable/'
       path: '/dashboard/stable'
       fullPath: '/dashboard/stable/'
       preLoaderRoute: typeof DashboardStableIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/driver/': {
+      id: '/dashboard/driver/'
+      path: '/dashboard/driver'
+      fullPath: '/dashboard/driver/'
+      preLoaderRoute: typeof DashboardDriverIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/training/$academyId/checkout': {
+      id: '/training/$academyId/checkout'
+      path: '/$academyId/checkout'
+      fullPath: '/training/$academyId/checkout'
+      preLoaderRoute: typeof TrainingAcademyIdCheckoutRouteImport
+      parentRoute: typeof TrainingRoute
     }
     '/dashboard/stable/schedule': {
       id: '/dashboard/stable/schedule'
@@ -964,6 +1062,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardStableHorsesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/driver/history': {
+      id: '/dashboard/driver/history'
+      path: '/dashboard/driver/history'
+      fullPath: '/dashboard/driver/history'
+      preLoaderRoute: typeof DashboardDriverHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/driver/active': {
+      id: '/dashboard/driver/active'
+      path: '/dashboard/driver/active'
+      fullPath: '/dashboard/driver/active'
+      preLoaderRoute: typeof DashboardDriverActiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/driver/account': {
+      id: '/dashboard/driver/account'
+      path: '/dashboard/driver/account'
+      fullPath: '/dashboard/driver/account'
+      preLoaderRoute: typeof DashboardDriverAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkout/package/$id': {
       id: '/checkout/package/$id'
       path: '/checkout/package/$id'
@@ -983,6 +1102,20 @@ const AuthRouteChildren: AuthRouteChildren = {
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
+interface TrainingRouteChildren {
+  TrainingAcademyIdCheckoutRoute: typeof TrainingAcademyIdCheckoutRoute
+  TrainingAcademyIdIndexRoute: typeof TrainingAcademyIdIndexRoute
+}
+
+const TrainingRouteChildren: TrainingRouteChildren = {
+  TrainingAcademyIdCheckoutRoute: TrainingAcademyIdCheckoutRoute,
+  TrainingAcademyIdIndexRoute: TrainingAcademyIdIndexRoute,
+}
+
+const TrainingRouteWithChildren = TrainingRoute._addFileChildren(
+  TrainingRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -1005,7 +1138,7 @@ const rootRouteChildren: RootRouteChildren = {
   SigninRoute: SigninRoute,
   SignupRoute: SignupRoute,
   TermsRoute: TermsRoute,
-  TrainingRoute: TrainingRoute,
+  TrainingRoute: TrainingRouteWithChildren,
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminHorsesRoute: AdminHorsesRoute,
   AdminScheduleRoute: AdminScheduleRoute,
@@ -1026,21 +1159,16 @@ const rootRouteChildren: RootRouteChildren = {
   PackagesIndexRoute: PackagesIndexRoute,
   StablesIndexRoute: StablesIndexRoute,
   CheckoutPackageIdRoute: CheckoutPackageIdRoute,
+  DashboardDriverAccountRoute: DashboardDriverAccountRoute,
+  DashboardDriverActiveRoute: DashboardDriverActiveRoute,
+  DashboardDriverHistoryRoute: DashboardDriverHistoryRoute,
   DashboardStableHorsesRoute: DashboardStableHorsesRoute,
   DashboardStableManageRoute: DashboardStableManageRoute,
   DashboardStableOsRoute: DashboardStableOsRoute,
   DashboardStableScheduleRoute: DashboardStableScheduleRoute,
+  DashboardDriverIndexRoute: DashboardDriverIndexRoute,
   DashboardStableIndexRoute: DashboardStableIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

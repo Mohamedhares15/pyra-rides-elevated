@@ -54,7 +54,7 @@ const AcademyDetail = () => {
                       <span className="inline-flex items-center gap-1.5"><Users className="size-3" /> {p.totalSessions} sessions</span>
                       <span className="inline-flex items-center gap-1.5"><Clock className="size-3" /> {p.sessionDuration} min each</span>
                     </div>
-                    <Link to={`/training/${academy.id}/checkout`} search={{ programId: p.id } as any} className="mt-6 inline-flex items-center gap-2 px-5 py-3 bg-foreground text-background text-[11px] tracking-[0.18em] uppercase">
+                    <Link to={`/training/${academy.id}/checkout?programId=${p.id}`} className="mt-6 inline-flex items-center gap-2 px-5 py-3 bg-foreground text-background text-[11px] tracking-[0.18em] uppercase">
                       Enrol <ArrowUpRight className="size-4" />
                     </Link>
                   </article>

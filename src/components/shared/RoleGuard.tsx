@@ -2,6 +2,7 @@ import { useEffect, type ReactNode } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useAuth } from "@/hooks/use-auth";
 import type { UserRole } from "@/lib/types";
+import { PageLoader } from "@/components/shared/Skeletons";
 
 /**
  * Wrap any dashboard page with <RoleGuard allow={["admin"]}>...
@@ -29,13 +30,7 @@ export const RoleGuard = ({
   }, [user, isLoading, allow, navigate]);
 
   if (isLoading || !user) {
-    return (
-      <div className="container pt-40 pb-32 min-h-[60vh]">
-        <p className="text-[11px] tracking-luxury uppercase text-ink-muted">
-          One moment…
-        </p>
-      </div>
-    );
+    return <PageLoader label="Verifying access" variant="dashboard" />;
   }
   if (!allow.includes(user.role)) return null;
   return <>{children}</>;

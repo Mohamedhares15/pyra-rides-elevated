@@ -1,16 +1,6 @@
-import { createFileRoute, useParams } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import StableDetail from "@/pages/StableDetail";
 import { stables } from "@/data/mock";
-
-function StableShare() {
-  // Bridge /s/$stableId → StableDetail (which reads `id`) by injecting param.
-  const { stableId } = useParams({ from: "/s/$stableId" });
-  // Render StableDetail inside a context where useParams returns { id }.
-  // Simplest: render directly and let strict:false expose stableId — but
-  // StableDetail expects `id`. Use a tiny in-memory swap via window.history.
-  // Cleanest: just inline the lookup ourselves and forward as a key.
-  return <StableDetail key={stableId} _idOverride={stableId} />;
-}
 
 export const Route = createFileRoute("/s/$stableId")({
   head: ({ params }) => {
@@ -27,5 +17,5 @@ export const Route = createFileRoute("/s/$stableId")({
       ],
     };
   },
-  component: StableShare,
+  component: StableDetail,
 });

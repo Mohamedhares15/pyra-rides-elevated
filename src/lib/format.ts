@@ -8,6 +8,9 @@ export const formatPrice = (amount: number, opts: { currency?: string; compact?:
   }).format(amount);
 };
 
+export const fmtMoney = (amount: number, opts?: { currency?: string; compact?: boolean }) =>
+  formatPrice(amount, opts);
+
 export const formatRating = (n: number) => n.toFixed(1);
 
 export const formatDuration = (hours: number) => {

@@ -57,7 +57,7 @@ export const Navbar = () => {
 
           <div className="hidden md:flex items-center gap-5">
             <NotificationBell />
-            <Link to="/auth" className="text-[13px] tracking-[0.16em] uppercase text-ink-muted hover:text-foreground transition-colors">Sign in</Link>
+            <Link to="/signin" className="text-[13px] tracking-[0.16em] uppercase text-ink-muted hover:text-foreground transition-colors">Sign in</Link>
             <Link to="/booking" className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background text-[12px] tracking-[0.18em] uppercase overflow-hidden">
               <span className="relative z-10">Reserve</span>
               <span aria-hidden className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)]" />
@@ -105,7 +105,7 @@ export const Navbar = () => {
             ))}
           </ul>
           <div className="mt-auto pt-8 border-t hairline flex flex-col gap-4">
-            <Link to="/auth" className="text-[13px] tracking-[0.16em] uppercase text-ink-muted">Sign in</Link>
+            <Link to="/signin" className="text-[13px] tracking-[0.16em] uppercase text-ink-muted">Sign in</Link>
             <Link to="/booking" className="inline-flex justify-center px-5 py-3 bg-foreground text-background text-[12px] tracking-[0.18em] uppercase">Reserve</Link>
           </div>
         </motion.aside>

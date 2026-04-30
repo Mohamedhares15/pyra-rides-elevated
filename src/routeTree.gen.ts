@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrainingRouteImport } from './routes/training'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SigninRouteImport } from './routes/signin'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
@@ -55,6 +57,16 @@ const TrainingRoute = TrainingRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReviewsRoute = ReviewsRouteImport.update({
@@ -250,6 +262,8 @@ export interface FileRoutesByFullPath {
   '/refund-policy': typeof RefundPolicyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/reviews': typeof ReviewsRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
   '/training': typeof TrainingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -289,6 +303,8 @@ export interface FileRoutesByTo {
   '/refund-policy': typeof RefundPolicyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/reviews': typeof ReviewsRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
   '/training': typeof TrainingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -329,6 +345,8 @@ export interface FileRoutesById {
   '/refund-policy': typeof RefundPolicyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/reviews': typeof ReviewsRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
   '/training': typeof TrainingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
@@ -370,6 +388,8 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/reset-password'
     | '/reviews'
+    | '/signin'
+    | '/signup'
     | '/terms'
     | '/training'
     | '/admin/analytics'
@@ -409,6 +429,8 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/reset-password'
     | '/reviews'
+    | '/signin'
+    | '/signup'
     | '/terms'
     | '/training'
     | '/admin/analytics'
@@ -448,6 +470,8 @@ export interface FileRouteTypes {
     | '/refund-policy'
     | '/reset-password'
     | '/reviews'
+    | '/signin'
+    | '/signup'
     | '/terms'
     | '/training'
     | '/admin/analytics'
@@ -488,6 +512,8 @@ export interface RootRouteChildren {
   RefundPolicyRoute: typeof RefundPolicyRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ReviewsRoute: typeof ReviewsRoute
+  SigninRoute: typeof SigninRoute
+  SignupRoute: typeof SignupRoute
   TermsRoute: typeof TermsRoute
   TrainingRoute: typeof TrainingRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
@@ -524,6 +550,20 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reviews': {
@@ -801,6 +841,8 @@ const rootRouteChildren: RootRouteChildren = {
   RefundPolicyRoute: RefundPolicyRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ReviewsRoute: ReviewsRoute,
+  SigninRoute: SigninRoute,
+  SignupRoute: SignupRoute,
   TermsRoute: TermsRoute,
   TrainingRoute: TrainingRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,

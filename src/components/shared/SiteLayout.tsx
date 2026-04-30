@@ -6,7 +6,12 @@ import { ConciergeChat } from "@/components/concierge/ConciergeChat";
 
 export const SiteLayout = () => {
   const { pathname } = useLocation();
-  const hideChat = pathname.startsWith("/auth");
+  const hideChat = pathname.startsWith("/auth")
+    || pathname === "/signin"
+    || pathname === "/signup"
+    || pathname === "/forgot-password"
+    || pathname === "/reset-password"
+    || pathname === "/offline";
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground grain">
       <Navbar />

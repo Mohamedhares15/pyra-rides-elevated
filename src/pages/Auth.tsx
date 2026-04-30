@@ -182,12 +182,12 @@ const Auth = () => {
 
             {mode === "signin" && (
               <div className="text-right">
-                <button
-                  type="button"
+                <Link
+                  to="/forgot-password"
                   className="text-[11px] tracking-luxury uppercase text-ink-muted hover:text-foreground transition-colors"
                 >
                   Forgot password
-                </button>
+                </Link>
               </div>
             )}
 

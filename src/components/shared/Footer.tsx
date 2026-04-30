@@ -13,8 +13,8 @@ export const Footer = () => (
       </div>
       <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-10 text-sm">
         <Col title="Discover" links={[["/stables","Stables"],["/packages","Packages"],["/training","Training"],["/gallery","Gallery"],["/reviews","Letters"],["/leaderboard","The Register"]]} />
-        <Col title="Concierge" links={[["/booking","Reserve"],["/checkout","Checkout"],["/dashboard","Your journeys"],["/cercle","Le Cercle"],["/contact","Contact"],["/faq","FAQ"]]} />
-        <Col title="House" links={[["/about","About"],["/pricing","Pricing"],["/admin","Stable OS"],["/auth","Sign in"],["/privacy","Privacy"],["/terms","Terms"],["/refund-policy","Refunds"]]} />
+        <Col title="Concierge" links={[["/booking","Reserve"],["/checkout","Checkout"],["/dashboard","Your journeys"],["/dashboard/loyalty","Le Cercle standing"],["/chat","Correspondence"],["/cercle","Le Cercle"],["/contact","Contact"],["/faq","FAQ"]]} />
+        <Col title="House" links={[["/about","About"],["/pricing","Pricing"],["/admin","Stable OS"],["/auth","Sign in"],["/auth/switch","Switchboard"],["/privacy","Privacy"],["/terms","Terms"],["/refund-policy","Refunds"]]} />
       </div>
     </div>
     <div className="border-t hairline">

@@ -66,10 +66,7 @@ function StablesPage() {
   const { data: locations } = useLocations();
 
   const update = (next: Partial<typeof search>) =>
-    navigate({ search: (prev: typeof search) => (({;
-      ...prev,;
-      ...next;
-    }) as typeof search) });
+    navigate({ search: (prev) => ({ ...prev, ...next }) });
 
   return (
     <SiteLayout>

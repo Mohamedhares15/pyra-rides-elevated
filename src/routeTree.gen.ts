@@ -45,8 +45,10 @@ import { Route as DashboardRiderRouteImport } from './routes/dashboard.rider'
 import { Route as DashboardLoyaltyRouteImport } from './routes/dashboard.loyalty'
 import { Route as DashboardCxMediaRouteImport } from './routes/dashboard.cx-media'
 import { Route as DashboardCaptainRouteImport } from './routes/dashboard.captain'
+import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard.analytics'
 import { Route as DashboardAdminRouteImport } from './routes/dashboard.admin'
 import { Route as AuthSwitchRouteImport } from './routes/auth.switch'
+import { Route as AdminUploadHorsesRouteImport } from './routes/admin.upload-horses'
 import { Route as AdminScheduleRouteImport } from './routes/admin.schedule'
 import { Route as AdminHorsesRouteImport } from './routes/admin.horses'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
@@ -61,7 +63,20 @@ import { Route as DashboardStableHorsesRouteImport } from './routes/dashboard.st
 import { Route as DashboardDriverHistoryRouteImport } from './routes/dashboard.driver.history'
 import { Route as DashboardDriverActiveRouteImport } from './routes/dashboard.driver.active'
 import { Route as DashboardDriverAccountRouteImport } from './routes/dashboard.driver.account'
+import { Route as DashboardCxMediaSupportRouteImport } from './routes/dashboard.cx-media.support'
+import { Route as DashboardCxMediaGalleryRouteImport } from './routes/dashboard.cx-media.gallery'
+import { Route as DashboardAdminUsersRouteImport } from './routes/dashboard.admin.users'
+import { Route as DashboardAdminTransportZonesRouteImport } from './routes/dashboard.admin.transport-zones'
+import { Route as DashboardAdminStablesRouteImport } from './routes/dashboard.admin.stables'
+import { Route as DashboardAdminPremiumRouteImport } from './routes/dashboard.admin.premium'
+import { Route as DashboardAdminLocationsRouteImport } from './routes/dashboard.admin.locations'
+import { Route as DashboardAdminInstantBookingRouteImport } from './routes/dashboard.admin.instant-booking'
+import { Route as DashboardAdminHorsesRouteImport } from './routes/dashboard.admin.horses'
+import { Route as DashboardAdminHorseChangesRouteImport } from './routes/dashboard.admin.horse-changes'
+import { Route as DashboardAdminAcademiesRouteImport } from './routes/dashboard.admin.academies'
 import { Route as CheckoutPackageIdRouteImport } from './routes/checkout.package.$id'
+import { Route as DashboardAdminPackagesIndexRouteImport } from './routes/dashboard.admin.packages.index'
+import { Route as DashboardAdminPackagesBookingsRouteImport } from './routes/dashboard.admin.packages.bookings'
 
 const TrainingRoute = TrainingRouteImport.update({
   id: '/training',
@@ -243,6 +258,11 @@ const DashboardCaptainRoute = DashboardCaptainRouteImport.update({
   path: '/dashboard/captain',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardAnalyticsRoute = DashboardAnalyticsRouteImport.update({
+  id: '/dashboard/analytics',
+  path: '/dashboard/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardAdminRoute = DashboardAdminRouteImport.update({
   id: '/dashboard/admin',
   path: '/dashboard/admin',
@@ -252,6 +272,11 @@ const AuthSwitchRoute = AuthSwitchRouteImport.update({
   id: '/switch',
   path: '/switch',
   getParentRoute: () => AuthRoute,
+} as any)
+const AdminUploadHorsesRoute = AdminUploadHorsesRouteImport.update({
+  id: '/admin/upload-horses',
+  path: '/admin/upload-horses',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminScheduleRoute = AdminScheduleRouteImport.update({
   id: '/admin/schedule',
@@ -324,11 +349,81 @@ const DashboardDriverAccountRoute = DashboardDriverAccountRouteImport.update({
   path: '/dashboard/driver/account',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardCxMediaSupportRoute = DashboardCxMediaSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => DashboardCxMediaRoute,
+} as any)
+const DashboardCxMediaGalleryRoute = DashboardCxMediaGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => DashboardCxMediaRoute,
+} as any)
+const DashboardAdminUsersRoute = DashboardAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => DashboardAdminRoute,
+} as any)
+const DashboardAdminTransportZonesRoute =
+  DashboardAdminTransportZonesRouteImport.update({
+    id: '/transport-zones',
+    path: '/transport-zones',
+    getParentRoute: () => DashboardAdminRoute,
+  } as any)
+const DashboardAdminStablesRoute = DashboardAdminStablesRouteImport.update({
+  id: '/stables',
+  path: '/stables',
+  getParentRoute: () => DashboardAdminRoute,
+} as any)
+const DashboardAdminPremiumRoute = DashboardAdminPremiumRouteImport.update({
+  id: '/premium',
+  path: '/premium',
+  getParentRoute: () => DashboardAdminRoute,
+} as any)
+const DashboardAdminLocationsRoute = DashboardAdminLocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
+  getParentRoute: () => DashboardAdminRoute,
+} as any)
+const DashboardAdminInstantBookingRoute =
+  DashboardAdminInstantBookingRouteImport.update({
+    id: '/instant-booking',
+    path: '/instant-booking',
+    getParentRoute: () => DashboardAdminRoute,
+  } as any)
+const DashboardAdminHorsesRoute = DashboardAdminHorsesRouteImport.update({
+  id: '/horses',
+  path: '/horses',
+  getParentRoute: () => DashboardAdminRoute,
+} as any)
+const DashboardAdminHorseChangesRoute =
+  DashboardAdminHorseChangesRouteImport.update({
+    id: '/horse-changes',
+    path: '/horse-changes',
+    getParentRoute: () => DashboardAdminRoute,
+  } as any)
+const DashboardAdminAcademiesRoute = DashboardAdminAcademiesRouteImport.update({
+  id: '/academies',
+  path: '/academies',
+  getParentRoute: () => DashboardAdminRoute,
+} as any)
 const CheckoutPackageIdRoute = CheckoutPackageIdRouteImport.update({
   id: '/checkout/package/$id',
   path: '/checkout/package/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardAdminPackagesIndexRoute =
+  DashboardAdminPackagesIndexRouteImport.update({
+    id: '/packages/',
+    path: '/packages/',
+    getParentRoute: () => DashboardAdminRoute,
+  } as any)
+const DashboardAdminPackagesBookingsRoute =
+  DashboardAdminPackagesBookingsRouteImport.update({
+    id: '/packages/bookings',
+    path: '/packages/bookings',
+    getParentRoute: () => DashboardAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -355,10 +450,12 @@ export interface FileRoutesByFullPath {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/horses': typeof AdminHorsesRoute
   '/admin/schedule': typeof AdminScheduleRoute
+  '/admin/upload-horses': typeof AdminUploadHorsesRoute
   '/auth/switch': typeof AuthSwitchRoute
-  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/admin': typeof DashboardAdminRouteWithChildren
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/captain': typeof DashboardCaptainRoute
-  '/dashboard/cx-media': typeof DashboardCxMediaRoute
+  '/dashboard/cx-media': typeof DashboardCxMediaRouteWithChildren
   '/dashboard/loyalty': typeof DashboardLoyaltyRoute
   '/dashboard/rider': typeof DashboardRiderRoute
   '/packages/$id': typeof PackagesIdRoute
@@ -373,6 +470,17 @@ export interface FileRoutesByFullPath {
   '/packages/': typeof PackagesIndexRoute
   '/stables/': typeof StablesIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
+  '/dashboard/admin/academies': typeof DashboardAdminAcademiesRoute
+  '/dashboard/admin/horse-changes': typeof DashboardAdminHorseChangesRoute
+  '/dashboard/admin/horses': typeof DashboardAdminHorsesRoute
+  '/dashboard/admin/instant-booking': typeof DashboardAdminInstantBookingRoute
+  '/dashboard/admin/locations': typeof DashboardAdminLocationsRoute
+  '/dashboard/admin/premium': typeof DashboardAdminPremiumRoute
+  '/dashboard/admin/stables': typeof DashboardAdminStablesRoute
+  '/dashboard/admin/transport-zones': typeof DashboardAdminTransportZonesRoute
+  '/dashboard/admin/users': typeof DashboardAdminUsersRoute
+  '/dashboard/cx-media/gallery': typeof DashboardCxMediaGalleryRoute
+  '/dashboard/cx-media/support': typeof DashboardCxMediaSupportRoute
   '/dashboard/driver/account': typeof DashboardDriverAccountRoute
   '/dashboard/driver/active': typeof DashboardDriverActiveRoute
   '/dashboard/driver/history': typeof DashboardDriverHistoryRoute
@@ -384,6 +492,8 @@ export interface FileRoutesByFullPath {
   '/dashboard/driver/': typeof DashboardDriverIndexRoute
   '/dashboard/stable/': typeof DashboardStableIndexRoute
   '/training/$academyId/': typeof TrainingAcademyIdIndexRoute
+  '/dashboard/admin/packages/bookings': typeof DashboardAdminPackagesBookingsRoute
+  '/dashboard/admin/packages/': typeof DashboardAdminPackagesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -410,10 +520,12 @@ export interface FileRoutesByTo {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/horses': typeof AdminHorsesRoute
   '/admin/schedule': typeof AdminScheduleRoute
+  '/admin/upload-horses': typeof AdminUploadHorsesRoute
   '/auth/switch': typeof AuthSwitchRoute
-  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/admin': typeof DashboardAdminRouteWithChildren
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/captain': typeof DashboardCaptainRoute
-  '/dashboard/cx-media': typeof DashboardCxMediaRoute
+  '/dashboard/cx-media': typeof DashboardCxMediaRouteWithChildren
   '/dashboard/loyalty': typeof DashboardLoyaltyRoute
   '/dashboard/rider': typeof DashboardRiderRoute
   '/packages/$id': typeof PackagesIdRoute
@@ -428,6 +540,17 @@ export interface FileRoutesByTo {
   '/packages': typeof PackagesIndexRoute
   '/stables': typeof StablesIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
+  '/dashboard/admin/academies': typeof DashboardAdminAcademiesRoute
+  '/dashboard/admin/horse-changes': typeof DashboardAdminHorseChangesRoute
+  '/dashboard/admin/horses': typeof DashboardAdminHorsesRoute
+  '/dashboard/admin/instant-booking': typeof DashboardAdminInstantBookingRoute
+  '/dashboard/admin/locations': typeof DashboardAdminLocationsRoute
+  '/dashboard/admin/premium': typeof DashboardAdminPremiumRoute
+  '/dashboard/admin/stables': typeof DashboardAdminStablesRoute
+  '/dashboard/admin/transport-zones': typeof DashboardAdminTransportZonesRoute
+  '/dashboard/admin/users': typeof DashboardAdminUsersRoute
+  '/dashboard/cx-media/gallery': typeof DashboardCxMediaGalleryRoute
+  '/dashboard/cx-media/support': typeof DashboardCxMediaSupportRoute
   '/dashboard/driver/account': typeof DashboardDriverAccountRoute
   '/dashboard/driver/active': typeof DashboardDriverActiveRoute
   '/dashboard/driver/history': typeof DashboardDriverHistoryRoute
@@ -439,6 +562,8 @@ export interface FileRoutesByTo {
   '/dashboard/driver': typeof DashboardDriverIndexRoute
   '/dashboard/stable': typeof DashboardStableIndexRoute
   '/training/$academyId': typeof TrainingAcademyIdIndexRoute
+  '/dashboard/admin/packages/bookings': typeof DashboardAdminPackagesBookingsRoute
+  '/dashboard/admin/packages': typeof DashboardAdminPackagesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -466,10 +591,12 @@ export interface FileRoutesById {
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/horses': typeof AdminHorsesRoute
   '/admin/schedule': typeof AdminScheduleRoute
+  '/admin/upload-horses': typeof AdminUploadHorsesRoute
   '/auth/switch': typeof AuthSwitchRoute
-  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/admin': typeof DashboardAdminRouteWithChildren
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/captain': typeof DashboardCaptainRoute
-  '/dashboard/cx-media': typeof DashboardCxMediaRoute
+  '/dashboard/cx-media': typeof DashboardCxMediaRouteWithChildren
   '/dashboard/loyalty': typeof DashboardLoyaltyRoute
   '/dashboard/rider': typeof DashboardRiderRoute
   '/packages/$id': typeof PackagesIdRoute
@@ -484,6 +611,17 @@ export interface FileRoutesById {
   '/packages/': typeof PackagesIndexRoute
   '/stables/': typeof StablesIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
+  '/dashboard/admin/academies': typeof DashboardAdminAcademiesRoute
+  '/dashboard/admin/horse-changes': typeof DashboardAdminHorseChangesRoute
+  '/dashboard/admin/horses': typeof DashboardAdminHorsesRoute
+  '/dashboard/admin/instant-booking': typeof DashboardAdminInstantBookingRoute
+  '/dashboard/admin/locations': typeof DashboardAdminLocationsRoute
+  '/dashboard/admin/premium': typeof DashboardAdminPremiumRoute
+  '/dashboard/admin/stables': typeof DashboardAdminStablesRoute
+  '/dashboard/admin/transport-zones': typeof DashboardAdminTransportZonesRoute
+  '/dashboard/admin/users': typeof DashboardAdminUsersRoute
+  '/dashboard/cx-media/gallery': typeof DashboardCxMediaGalleryRoute
+  '/dashboard/cx-media/support': typeof DashboardCxMediaSupportRoute
   '/dashboard/driver/account': typeof DashboardDriverAccountRoute
   '/dashboard/driver/active': typeof DashboardDriverActiveRoute
   '/dashboard/driver/history': typeof DashboardDriverHistoryRoute
@@ -495,6 +633,8 @@ export interface FileRoutesById {
   '/dashboard/driver/': typeof DashboardDriverIndexRoute
   '/dashboard/stable/': typeof DashboardStableIndexRoute
   '/training/$academyId/': typeof TrainingAcademyIdIndexRoute
+  '/dashboard/admin/packages/bookings': typeof DashboardAdminPackagesBookingsRoute
+  '/dashboard/admin/packages/': typeof DashboardAdminPackagesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -523,8 +663,10 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/horses'
     | '/admin/schedule'
+    | '/admin/upload-horses'
     | '/auth/switch'
     | '/dashboard/admin'
+    | '/dashboard/analytics'
     | '/dashboard/captain'
     | '/dashboard/cx-media'
     | '/dashboard/loyalty'
@@ -541,6 +683,17 @@ export interface FileRouteTypes {
     | '/packages/'
     | '/stables/'
     | '/checkout/package/$id'
+    | '/dashboard/admin/academies'
+    | '/dashboard/admin/horse-changes'
+    | '/dashboard/admin/horses'
+    | '/dashboard/admin/instant-booking'
+    | '/dashboard/admin/locations'
+    | '/dashboard/admin/premium'
+    | '/dashboard/admin/stables'
+    | '/dashboard/admin/transport-zones'
+    | '/dashboard/admin/users'
+    | '/dashboard/cx-media/gallery'
+    | '/dashboard/cx-media/support'
     | '/dashboard/driver/account'
     | '/dashboard/driver/active'
     | '/dashboard/driver/history'
@@ -552,6 +705,8 @@ export interface FileRouteTypes {
     | '/dashboard/driver/'
     | '/dashboard/stable/'
     | '/training/$academyId/'
+    | '/dashboard/admin/packages/bookings'
+    | '/dashboard/admin/packages/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -578,8 +733,10 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/horses'
     | '/admin/schedule'
+    | '/admin/upload-horses'
     | '/auth/switch'
     | '/dashboard/admin'
+    | '/dashboard/analytics'
     | '/dashboard/captain'
     | '/dashboard/cx-media'
     | '/dashboard/loyalty'
@@ -596,6 +753,17 @@ export interface FileRouteTypes {
     | '/packages'
     | '/stables'
     | '/checkout/package/$id'
+    | '/dashboard/admin/academies'
+    | '/dashboard/admin/horse-changes'
+    | '/dashboard/admin/horses'
+    | '/dashboard/admin/instant-booking'
+    | '/dashboard/admin/locations'
+    | '/dashboard/admin/premium'
+    | '/dashboard/admin/stables'
+    | '/dashboard/admin/transport-zones'
+    | '/dashboard/admin/users'
+    | '/dashboard/cx-media/gallery'
+    | '/dashboard/cx-media/support'
     | '/dashboard/driver/account'
     | '/dashboard/driver/active'
     | '/dashboard/driver/history'
@@ -607,6 +775,8 @@ export interface FileRouteTypes {
     | '/dashboard/driver'
     | '/dashboard/stable'
     | '/training/$academyId'
+    | '/dashboard/admin/packages/bookings'
+    | '/dashboard/admin/packages'
   id:
     | '__root__'
     | '/'
@@ -633,8 +803,10 @@ export interface FileRouteTypes {
     | '/admin/analytics'
     | '/admin/horses'
     | '/admin/schedule'
+    | '/admin/upload-horses'
     | '/auth/switch'
     | '/dashboard/admin'
+    | '/dashboard/analytics'
     | '/dashboard/captain'
     | '/dashboard/cx-media'
     | '/dashboard/loyalty'
@@ -651,6 +823,17 @@ export interface FileRouteTypes {
     | '/packages/'
     | '/stables/'
     | '/checkout/package/$id'
+    | '/dashboard/admin/academies'
+    | '/dashboard/admin/horse-changes'
+    | '/dashboard/admin/horses'
+    | '/dashboard/admin/instant-booking'
+    | '/dashboard/admin/locations'
+    | '/dashboard/admin/premium'
+    | '/dashboard/admin/stables'
+    | '/dashboard/admin/transport-zones'
+    | '/dashboard/admin/users'
+    | '/dashboard/cx-media/gallery'
+    | '/dashboard/cx-media/support'
     | '/dashboard/driver/account'
     | '/dashboard/driver/active'
     | '/dashboard/driver/history'
@@ -662,6 +845,8 @@ export interface FileRouteTypes {
     | '/dashboard/driver/'
     | '/dashboard/stable/'
     | '/training/$academyId/'
+    | '/dashboard/admin/packages/bookings'
+    | '/dashboard/admin/packages/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -689,9 +874,11 @@ export interface RootRouteChildren {
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminHorsesRoute: typeof AdminHorsesRoute
   AdminScheduleRoute: typeof AdminScheduleRoute
-  DashboardAdminRoute: typeof DashboardAdminRoute
+  AdminUploadHorsesRoute: typeof AdminUploadHorsesRoute
+  DashboardAdminRoute: typeof DashboardAdminRouteWithChildren
+  DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
   DashboardCaptainRoute: typeof DashboardCaptainRoute
-  DashboardCxMediaRoute: typeof DashboardCxMediaRoute
+  DashboardCxMediaRoute: typeof DashboardCxMediaRouteWithChildren
   DashboardLoyaltyRoute: typeof DashboardLoyaltyRoute
   DashboardRiderRoute: typeof DashboardRiderRoute
   PackagesIdRoute: typeof PackagesIdRoute
@@ -971,6 +1158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardCaptainRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/analytics': {
+      id: '/dashboard/analytics'
+      path: '/dashboard/analytics'
+      fullPath: '/dashboard/analytics'
+      preLoaderRoute: typeof DashboardAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/admin': {
       id: '/dashboard/admin'
       path: '/dashboard/admin'
@@ -984,6 +1178,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/auth/switch'
       preLoaderRoute: typeof AuthSwitchRouteImport
       parentRoute: typeof AuthRoute
+    }
+    '/admin/upload-horses': {
+      id: '/admin/upload-horses'
+      path: '/admin/upload-horses'
+      fullPath: '/admin/upload-horses'
+      preLoaderRoute: typeof AdminUploadHorsesRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/admin/schedule': {
       id: '/admin/schedule'
@@ -1083,12 +1284,103 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardDriverAccountRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/cx-media/support': {
+      id: '/dashboard/cx-media/support'
+      path: '/support'
+      fullPath: '/dashboard/cx-media/support'
+      preLoaderRoute: typeof DashboardCxMediaSupportRouteImport
+      parentRoute: typeof DashboardCxMediaRoute
+    }
+    '/dashboard/cx-media/gallery': {
+      id: '/dashboard/cx-media/gallery'
+      path: '/gallery'
+      fullPath: '/dashboard/cx-media/gallery'
+      preLoaderRoute: typeof DashboardCxMediaGalleryRouteImport
+      parentRoute: typeof DashboardCxMediaRoute
+    }
+    '/dashboard/admin/users': {
+      id: '/dashboard/admin/users'
+      path: '/users'
+      fullPath: '/dashboard/admin/users'
+      preLoaderRoute: typeof DashboardAdminUsersRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/admin/transport-zones': {
+      id: '/dashboard/admin/transport-zones'
+      path: '/transport-zones'
+      fullPath: '/dashboard/admin/transport-zones'
+      preLoaderRoute: typeof DashboardAdminTransportZonesRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/admin/stables': {
+      id: '/dashboard/admin/stables'
+      path: '/stables'
+      fullPath: '/dashboard/admin/stables'
+      preLoaderRoute: typeof DashboardAdminStablesRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/admin/premium': {
+      id: '/dashboard/admin/premium'
+      path: '/premium'
+      fullPath: '/dashboard/admin/premium'
+      preLoaderRoute: typeof DashboardAdminPremiumRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/admin/locations': {
+      id: '/dashboard/admin/locations'
+      path: '/locations'
+      fullPath: '/dashboard/admin/locations'
+      preLoaderRoute: typeof DashboardAdminLocationsRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/admin/instant-booking': {
+      id: '/dashboard/admin/instant-booking'
+      path: '/instant-booking'
+      fullPath: '/dashboard/admin/instant-booking'
+      preLoaderRoute: typeof DashboardAdminInstantBookingRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/admin/horses': {
+      id: '/dashboard/admin/horses'
+      path: '/horses'
+      fullPath: '/dashboard/admin/horses'
+      preLoaderRoute: typeof DashboardAdminHorsesRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/admin/horse-changes': {
+      id: '/dashboard/admin/horse-changes'
+      path: '/horse-changes'
+      fullPath: '/dashboard/admin/horse-changes'
+      preLoaderRoute: typeof DashboardAdminHorseChangesRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/admin/academies': {
+      id: '/dashboard/admin/academies'
+      path: '/academies'
+      fullPath: '/dashboard/admin/academies'
+      preLoaderRoute: typeof DashboardAdminAcademiesRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
     '/checkout/package/$id': {
       id: '/checkout/package/$id'
       path: '/checkout/package/$id'
       fullPath: '/checkout/package/$id'
       preLoaderRoute: typeof CheckoutPackageIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/admin/packages/': {
+      id: '/dashboard/admin/packages/'
+      path: '/packages'
+      fullPath: '/dashboard/admin/packages/'
+      preLoaderRoute: typeof DashboardAdminPackagesIndexRouteImport
+      parentRoute: typeof DashboardAdminRoute
+    }
+    '/dashboard/admin/packages/bookings': {
+      id: '/dashboard/admin/packages/bookings'
+      path: '/packages/bookings'
+      fullPath: '/dashboard/admin/packages/bookings'
+      preLoaderRoute: typeof DashboardAdminPackagesBookingsRouteImport
+      parentRoute: typeof DashboardAdminRoute
     }
   }
 }
@@ -1117,6 +1409,51 @@ const TrainingRouteWithChildren = TrainingRoute._addFileChildren(
   TrainingRouteChildren,
 )
 
+interface DashboardAdminRouteChildren {
+  DashboardAdminAcademiesRoute: typeof DashboardAdminAcademiesRoute
+  DashboardAdminHorseChangesRoute: typeof DashboardAdminHorseChangesRoute
+  DashboardAdminHorsesRoute: typeof DashboardAdminHorsesRoute
+  DashboardAdminInstantBookingRoute: typeof DashboardAdminInstantBookingRoute
+  DashboardAdminLocationsRoute: typeof DashboardAdminLocationsRoute
+  DashboardAdminPremiumRoute: typeof DashboardAdminPremiumRoute
+  DashboardAdminStablesRoute: typeof DashboardAdminStablesRoute
+  DashboardAdminTransportZonesRoute: typeof DashboardAdminTransportZonesRoute
+  DashboardAdminUsersRoute: typeof DashboardAdminUsersRoute
+  DashboardAdminPackagesBookingsRoute: typeof DashboardAdminPackagesBookingsRoute
+  DashboardAdminPackagesIndexRoute: typeof DashboardAdminPackagesIndexRoute
+}
+
+const DashboardAdminRouteChildren: DashboardAdminRouteChildren = {
+  DashboardAdminAcademiesRoute: DashboardAdminAcademiesRoute,
+  DashboardAdminHorseChangesRoute: DashboardAdminHorseChangesRoute,
+  DashboardAdminHorsesRoute: DashboardAdminHorsesRoute,
+  DashboardAdminInstantBookingRoute: DashboardAdminInstantBookingRoute,
+  DashboardAdminLocationsRoute: DashboardAdminLocationsRoute,
+  DashboardAdminPremiumRoute: DashboardAdminPremiumRoute,
+  DashboardAdminStablesRoute: DashboardAdminStablesRoute,
+  DashboardAdminTransportZonesRoute: DashboardAdminTransportZonesRoute,
+  DashboardAdminUsersRoute: DashboardAdminUsersRoute,
+  DashboardAdminPackagesBookingsRoute: DashboardAdminPackagesBookingsRoute,
+  DashboardAdminPackagesIndexRoute: DashboardAdminPackagesIndexRoute,
+}
+
+const DashboardAdminRouteWithChildren = DashboardAdminRoute._addFileChildren(
+  DashboardAdminRouteChildren,
+)
+
+interface DashboardCxMediaRouteChildren {
+  DashboardCxMediaGalleryRoute: typeof DashboardCxMediaGalleryRoute
+  DashboardCxMediaSupportRoute: typeof DashboardCxMediaSupportRoute
+}
+
+const DashboardCxMediaRouteChildren: DashboardCxMediaRouteChildren = {
+  DashboardCxMediaGalleryRoute: DashboardCxMediaGalleryRoute,
+  DashboardCxMediaSupportRoute: DashboardCxMediaSupportRoute,
+}
+
+const DashboardCxMediaRouteWithChildren =
+  DashboardCxMediaRoute._addFileChildren(DashboardCxMediaRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -1142,9 +1479,11 @@ const rootRouteChildren: RootRouteChildren = {
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminHorsesRoute: AdminHorsesRoute,
   AdminScheduleRoute: AdminScheduleRoute,
-  DashboardAdminRoute: DashboardAdminRoute,
+  AdminUploadHorsesRoute: AdminUploadHorsesRoute,
+  DashboardAdminRoute: DashboardAdminRouteWithChildren,
+  DashboardAnalyticsRoute: DashboardAnalyticsRoute,
   DashboardCaptainRoute: DashboardCaptainRoute,
-  DashboardCxMediaRoute: DashboardCxMediaRoute,
+  DashboardCxMediaRoute: DashboardCxMediaRouteWithChildren,
   DashboardLoyaltyRoute: DashboardLoyaltyRoute,
   DashboardRiderRoute: DashboardRiderRoute,
   PackagesIdRoute: PackagesIdRoute,

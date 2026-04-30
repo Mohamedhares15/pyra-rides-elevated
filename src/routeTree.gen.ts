@@ -38,6 +38,7 @@ import { Route as UsersIdRouteImport } from './routes/users.$id'
 import { Route as StablesIdRouteImport } from './routes/stables.$id'
 import { Route as SStableIdRouteImport } from './routes/s.$stableId'
 import { Route as PackagesIdRouteImport } from './routes/packages.$id'
+import { Route as DashboardRiderRouteImport } from './routes/dashboard.rider'
 import { Route as DashboardLoyaltyRouteImport } from './routes/dashboard.loyalty'
 import { Route as DashboardDriverRouteImport } from './routes/dashboard.driver'
 import { Route as DashboardCxMediaRouteImport } from './routes/dashboard.cx-media'
@@ -194,6 +195,11 @@ const PackagesIdRoute = PackagesIdRouteImport.update({
   path: '/packages/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRiderRoute = DashboardRiderRouteImport.update({
+  id: '/dashboard/rider',
+  path: '/dashboard/rider',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardLoyaltyRoute = DashboardLoyaltyRouteImport.update({
   id: '/dashboard/loyalty',
   path: '/dashboard/loyalty',
@@ -275,6 +281,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/cx-media': typeof DashboardCxMediaRoute
   '/dashboard/driver': typeof DashboardDriverRoute
   '/dashboard/loyalty': typeof DashboardLoyaltyRoute
+  '/dashboard/rider': typeof DashboardRiderRoute
   '/packages/$id': typeof PackagesIdRoute
   '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
@@ -316,6 +323,7 @@ export interface FileRoutesByTo {
   '/dashboard/cx-media': typeof DashboardCxMediaRoute
   '/dashboard/driver': typeof DashboardDriverRoute
   '/dashboard/loyalty': typeof DashboardLoyaltyRoute
+  '/dashboard/rider': typeof DashboardRiderRoute
   '/packages/$id': typeof PackagesIdRoute
   '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
@@ -358,6 +366,7 @@ export interface FileRoutesById {
   '/dashboard/cx-media': typeof DashboardCxMediaRoute
   '/dashboard/driver': typeof DashboardDriverRoute
   '/dashboard/loyalty': typeof DashboardLoyaltyRoute
+  '/dashboard/rider': typeof DashboardRiderRoute
   '/packages/$id': typeof PackagesIdRoute
   '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
@@ -401,6 +410,7 @@ export interface FileRouteTypes {
     | '/dashboard/cx-media'
     | '/dashboard/driver'
     | '/dashboard/loyalty'
+    | '/dashboard/rider'
     | '/packages/$id'
     | '/s/$stableId'
     | '/stables/$id'
@@ -442,6 +452,7 @@ export interface FileRouteTypes {
     | '/dashboard/cx-media'
     | '/dashboard/driver'
     | '/dashboard/loyalty'
+    | '/dashboard/rider'
     | '/packages/$id'
     | '/s/$stableId'
     | '/stables/$id'
@@ -483,6 +494,7 @@ export interface FileRouteTypes {
     | '/dashboard/cx-media'
     | '/dashboard/driver'
     | '/dashboard/loyalty'
+    | '/dashboard/rider'
     | '/packages/$id'
     | '/s/$stableId'
     | '/stables/$id'
@@ -524,6 +536,7 @@ export interface RootRouteChildren {
   DashboardCxMediaRoute: typeof DashboardCxMediaRoute
   DashboardDriverRoute: typeof DashboardDriverRoute
   DashboardLoyaltyRoute: typeof DashboardLoyaltyRoute
+  DashboardRiderRoute: typeof DashboardRiderRoute
   PackagesIdRoute: typeof PackagesIdRoute
   SStableIdRoute: typeof SStableIdRoute
   StablesIdRoute: typeof StablesIdRoute
@@ -741,6 +754,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PackagesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/rider': {
+      id: '/dashboard/rider'
+      path: '/dashboard/rider'
+      fullPath: '/dashboard/rider'
+      preLoaderRoute: typeof DashboardRiderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/loyalty': {
       id: '/dashboard/loyalty'
       path: '/dashboard/loyalty'
@@ -853,6 +873,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardCxMediaRoute: DashboardCxMediaRoute,
   DashboardDriverRoute: DashboardDriverRoute,
   DashboardLoyaltyRoute: DashboardLoyaltyRoute,
+  DashboardRiderRoute: DashboardRiderRoute,
   PackagesIdRoute: PackagesIdRoute,
   SStableIdRoute: SStableIdRoute,
   StablesIdRoute: StablesIdRoute,
@@ -867,3 +888,12 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

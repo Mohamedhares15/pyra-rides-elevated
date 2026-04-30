@@ -10,33 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StablesIndexRouteImport } from './routes/stables.index'
+import { Route as PackagesIndexRouteImport } from './routes/packages.index'
+import { Route as StablesIdRouteImport } from './routes/stables.$id'
+import { Route as PackagesIdRouteImport } from './routes/packages.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StablesIndexRoute = StablesIndexRouteImport.update({
+  id: '/stables/',
+  path: '/stables/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PackagesIndexRoute = PackagesIndexRouteImport.update({
+  id: '/packages/',
+  path: '/packages/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StablesIdRoute = StablesIdRouteImport.update({
+  id: '/stables/$id',
+  path: '/stables/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PackagesIdRoute = PackagesIdRouteImport.update({
+  id: '/packages/$id',
+  path: '/packages/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/packages/$id': typeof PackagesIdRoute
+  '/stables/$id': typeof StablesIdRoute
+  '/packages/': typeof PackagesIndexRoute
+  '/stables/': typeof StablesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/packages/$id': typeof PackagesIdRoute
+  '/stables/$id': typeof StablesIdRoute
+  '/packages': typeof PackagesIndexRoute
+  '/stables': typeof StablesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/packages/$id': typeof PackagesIdRoute
+  '/stables/$id': typeof StablesIdRoute
+  '/packages/': typeof PackagesIndexRoute
+  '/stables/': typeof StablesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/packages/$id' | '/stables/$id' | '/packages/' | '/stables/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/packages/$id' | '/stables/$id' | '/packages' | '/stables'
+  id:
+    | '__root__'
+    | '/'
+    | '/packages/$id'
+    | '/stables/$id'
+    | '/packages/'
+    | '/stables/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PackagesIdRoute: typeof PackagesIdRoute
+  StablesIdRoute: typeof StablesIdRoute
+  PackagesIndexRoute: typeof PackagesIndexRoute
+  StablesIndexRoute: typeof StablesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,21 +94,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stables/': {
+      id: '/stables/'
+      path: '/stables'
+      fullPath: '/stables/'
+      preLoaderRoute: typeof StablesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/packages/': {
+      id: '/packages/'
+      path: '/packages'
+      fullPath: '/packages/'
+      preLoaderRoute: typeof PackagesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stables/$id': {
+      id: '/stables/$id'
+      path: '/stables/$id'
+      fullPath: '/stables/$id'
+      preLoaderRoute: typeof StablesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/packages/$id': {
+      id: '/packages/$id'
+      path: '/packages/$id'
+      fullPath: '/packages/$id'
+      preLoaderRoute: typeof PackagesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PackagesIdRoute: PackagesIdRoute,
+  StablesIdRoute: StablesIdRoute,
+  PackagesIndexRoute: PackagesIndexRoute,
+  StablesIndexRoute: StablesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}

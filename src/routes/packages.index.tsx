@@ -7,7 +7,7 @@ import { PackageCardSkeleton } from "@/components/skeletons";
 import { usePackages } from "@/lib/api/hooks";
 import type { PackageType } from "@/lib/types";
 
-export const Route = createFileRoute("/packages")({
+export const Route = createFileRoute("/packages/")({
   head: () => ({
     meta: [
       { title: "Curated packages — PyraRides" },

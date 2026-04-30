@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { api } from "@/lib/api/client";
 import { formatPrice } from "@/lib/format";
 
-export const Route = createFileRoute("/checkout")({
+export const Route = createFileRoute("/checkout/")({
   head: () => ({ meta: [{ title: "Checkout — PyraRides" }] }),
   component: CheckoutPage,
 });

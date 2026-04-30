@@ -1,9 +1,10 @@
-import { Outlet, Link, createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
+import { Link, createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
 import { Button } from "@/components/ui/button";
+import { SiteLayout } from "@/components/shared/SiteLayout";
 
 interface RouterContext {
   queryClient: QueryClient;
@@ -86,13 +87,12 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <SiteLayout />
       <Toaster
         position="top-center"
         toastOptions={{
           classNames: {
             toast: "!bg-surface-elevated !border !border-hairline !text-foreground !rounded-sm !font-sans",
-            description: "!text-[oklch(0.52_0.025_158)]",
           },
         }}
       />

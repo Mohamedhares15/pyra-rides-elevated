@@ -10,9 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrainingRouteImport } from './routes/training'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CercleRouteImport } from './routes/cercle'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -24,6 +30,7 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as CheckoutIndexRouteImport } from './routes/checkout.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as StablesIdRouteImport } from './routes/stables.$id'
+import { Route as SStableIdRouteImport } from './routes/s.$stableId'
 import { Route as PackagesIdRouteImport } from './routes/packages.$id'
 import { Route as DashboardDriverRouteImport } from './routes/dashboard.driver'
 import { Route as DashboardCxMediaRouteImport } from './routes/dashboard.cx-media'
@@ -39,9 +46,34 @@ const TrainingRoute = TrainingRouteImport.update({
   path: '/training',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReviewsRoute = ReviewsRouteImport.update({
   id: '/reviews',
   path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -52,6 +84,11 @@ const GalleryRoute = GalleryRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CercleRoute = CercleRouteImport.update({
@@ -109,6 +146,11 @@ const StablesIdRoute = StablesIdRouteImport.update({
   path: '/stables/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SStableIdRoute = SStableIdRouteImport.update({
+  id: '/s/$stableId',
+  path: '/s/$stableId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PackagesIdRoute = PackagesIdRouteImport.update({
   id: '/packages/$id',
   path: '/packages/$id',
@@ -161,9 +203,15 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/booking': typeof BookingRoute
   '/cercle': typeof CercleRoute
+  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/reviews': typeof ReviewsRoute
+  '/terms': typeof TermsRoute
   '/training': typeof TrainingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/horses': typeof AdminHorsesRoute
@@ -173,6 +221,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/cx-media': typeof DashboardCxMediaRoute
   '/dashboard/driver': typeof DashboardDriverRoute
   '/packages/$id': typeof PackagesIdRoute
+  '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
   '/admin/': typeof AdminIndexRoute
   '/checkout/': typeof CheckoutIndexRoute
@@ -187,9 +236,15 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/booking': typeof BookingRoute
   '/cercle': typeof CercleRoute
+  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/reviews': typeof ReviewsRoute
+  '/terms': typeof TermsRoute
   '/training': typeof TrainingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/horses': typeof AdminHorsesRoute
@@ -199,6 +254,7 @@ export interface FileRoutesByTo {
   '/dashboard/cx-media': typeof DashboardCxMediaRoute
   '/dashboard/driver': typeof DashboardDriverRoute
   '/packages/$id': typeof PackagesIdRoute
+  '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
   '/admin': typeof AdminIndexRoute
   '/checkout': typeof CheckoutIndexRoute
@@ -214,9 +270,15 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/booking': typeof BookingRoute
   '/cercle': typeof CercleRoute
+  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
   '/reviews': typeof ReviewsRoute
+  '/terms': typeof TermsRoute
   '/training': typeof TrainingRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/horses': typeof AdminHorsesRoute
@@ -226,6 +288,7 @@ export interface FileRoutesById {
   '/dashboard/cx-media': typeof DashboardCxMediaRoute
   '/dashboard/driver': typeof DashboardDriverRoute
   '/packages/$id': typeof PackagesIdRoute
+  '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
   '/admin/': typeof AdminIndexRoute
   '/checkout/': typeof CheckoutIndexRoute
@@ -242,9 +305,15 @@ export interface FileRouteTypes {
     | '/auth'
     | '/booking'
     | '/cercle'
+    | '/contact'
     | '/faq'
     | '/gallery'
+    | '/leaderboard'
+    | '/pricing'
+    | '/privacy'
+    | '/refund-policy'
     | '/reviews'
+    | '/terms'
     | '/training'
     | '/admin/analytics'
     | '/admin/horses'
@@ -254,6 +323,7 @@ export interface FileRouteTypes {
     | '/dashboard/cx-media'
     | '/dashboard/driver'
     | '/packages/$id'
+    | '/s/$stableId'
     | '/stables/$id'
     | '/admin/'
     | '/checkout/'
@@ -268,9 +338,15 @@ export interface FileRouteTypes {
     | '/auth'
     | '/booking'
     | '/cercle'
+    | '/contact'
     | '/faq'
     | '/gallery'
+    | '/leaderboard'
+    | '/pricing'
+    | '/privacy'
+    | '/refund-policy'
     | '/reviews'
+    | '/terms'
     | '/training'
     | '/admin/analytics'
     | '/admin/horses'
@@ -280,6 +356,7 @@ export interface FileRouteTypes {
     | '/dashboard/cx-media'
     | '/dashboard/driver'
     | '/packages/$id'
+    | '/s/$stableId'
     | '/stables/$id'
     | '/admin'
     | '/checkout'
@@ -294,9 +371,15 @@ export interface FileRouteTypes {
     | '/auth'
     | '/booking'
     | '/cercle'
+    | '/contact'
     | '/faq'
     | '/gallery'
+    | '/leaderboard'
+    | '/pricing'
+    | '/privacy'
+    | '/refund-policy'
     | '/reviews'
+    | '/terms'
     | '/training'
     | '/admin/analytics'
     | '/admin/horses'
@@ -306,6 +389,7 @@ export interface FileRouteTypes {
     | '/dashboard/cx-media'
     | '/dashboard/driver'
     | '/packages/$id'
+    | '/s/$stableId'
     | '/stables/$id'
     | '/admin/'
     | '/checkout/'
@@ -321,9 +405,15 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   BookingRoute: typeof BookingRoute
   CercleRoute: typeof CercleRoute
+  ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
+  LeaderboardRoute: typeof LeaderboardRoute
+  PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
+  RefundPolicyRoute: typeof RefundPolicyRoute
   ReviewsRoute: typeof ReviewsRoute
+  TermsRoute: typeof TermsRoute
   TrainingRoute: typeof TrainingRoute
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminHorsesRoute: typeof AdminHorsesRoute
@@ -333,6 +423,7 @@ export interface RootRouteChildren {
   DashboardCxMediaRoute: typeof DashboardCxMediaRoute
   DashboardDriverRoute: typeof DashboardDriverRoute
   PackagesIdRoute: typeof PackagesIdRoute
+  SStableIdRoute: typeof SStableIdRoute
   StablesIdRoute: typeof StablesIdRoute
   AdminIndexRoute: typeof AdminIndexRoute
   CheckoutIndexRoute: typeof CheckoutIndexRoute
@@ -351,11 +442,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrainingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reviews': {
       id: '/reviews'
       path: '/reviews'
       fullPath: '/reviews'
       preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -370,6 +496,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cercle': {
@@ -449,6 +582,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StablesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/s/$stableId': {
+      id: '/s/$stableId'
+      path: '/s/$stableId'
+      fullPath: '/s/$stableId'
+      preLoaderRoute: typeof SStableIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/packages/$id': {
       id: '/packages/$id'
       path: '/packages/$id'
@@ -521,9 +661,15 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   BookingRoute: BookingRoute,
   CercleRoute: CercleRoute,
+  ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
+  LeaderboardRoute: LeaderboardRoute,
+  PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
+  RefundPolicyRoute: RefundPolicyRoute,
   ReviewsRoute: ReviewsRoute,
+  TermsRoute: TermsRoute,
   TrainingRoute: TrainingRoute,
   AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminHorsesRoute: AdminHorsesRoute,
@@ -533,6 +679,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardCxMediaRoute: DashboardCxMediaRoute,
   DashboardDriverRoute: DashboardDriverRoute,
   PackagesIdRoute: PackagesIdRoute,
+  SStableIdRoute: SStableIdRoute,
   StablesIdRoute: StablesIdRoute,
   AdminIndexRoute: AdminIndexRoute,
   CheckoutIndexRoute: CheckoutIndexRoute,

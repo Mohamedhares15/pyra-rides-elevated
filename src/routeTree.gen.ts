@@ -10,32 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TrainingRouteImport } from './routes/training'
-import { Route as TermsRouteImport } from './routes/terms'
-import { Route as SignupRouteImport } from './routes/signup'
-import { Route as SigninRouteImport } from './routes/signin'
 import { Route as ReviewsRouteImport } from './routes/reviews'
-import { Route as ResetPasswordRouteImport } from './routes/reset-password'
-import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as PricingRouteImport } from './routes/pricing'
-import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as FaqRouteImport } from './routes/faq'
-import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CercleRouteImport } from './routes/cercle'
 import { Route as BookingRouteImport } from './routes/booking'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as StablesIndexRouteImport } from './routes/stables.index'
 import { Route as PackagesIndexRouteImport } from './routes/packages.index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as CheckoutIndexRouteImport } from './routes/checkout.index'
-import { Route as UsersIdRouteImport } from './routes/users.$id'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as StablesIdRouteImport } from './routes/stables.$id'
-import { Route as PaymentSuccessRouteImport } from './routes/payment.success'
-import { Route as PaymentCancelRouteImport } from './routes/payment.cancel'
 import { Route as PackagesIdRouteImport } from './routes/packages.$id'
-import { Route as DashboardRiderRouteImport } from './routes/dashboard.rider'
+import { Route as DashboardDriverRouteImport } from './routes/dashboard.driver'
+import { Route as DashboardCxMediaRouteImport } from './routes/dashboard.cx-media'
+import { Route as DashboardCaptainRouteImport } from './routes/dashboard.captain'
+import { Route as DashboardAdminRouteImport } from './routes/dashboard.admin'
+import { Route as AdminScheduleRouteImport } from './routes/admin.schedule'
+import { Route as AdminHorsesRouteImport } from './routes/admin.horses'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 import { Route as CheckoutPackageIdRouteImport } from './routes/checkout.package.$id'
 
 const TrainingRoute = TrainingRouteImport.update({
@@ -43,49 +39,9 @@ const TrainingRoute = TrainingRouteImport.update({
   path: '/training',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SignupRoute = SignupRouteImport.update({
-  id: '/signup',
-  path: '/signup',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SigninRoute = SigninRouteImport.update({
-  id: '/signin',
-  path: '/signin',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ReviewsRoute = ReviewsRouteImport.update({
   id: '/reviews',
   path: '/reviews',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RefundPolicyRoute = RefundPolicyRouteImport.update({
-  id: '/refund-policy',
-  path: '/refund-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PricingRoute = PricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LeaderboardRoute = LeaderboardRouteImport.update({
-  id: '/leaderboard',
-  path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -93,19 +49,9 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
-  id: '/forgot-password',
-  path: '/forgot-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CercleRoute = CercleRouteImport.update({
@@ -116,6 +62,11 @@ const CercleRoute = CercleRouteImport.update({
 const BookingRoute = BookingRouteImport.update({
   id: '/booking',
   path: '/booking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -138,14 +89,19 @@ const PackagesIndexRoute = PackagesIndexRouteImport.update({
   path: '/packages/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CheckoutIndexRoute = CheckoutIndexRouteImport.update({
   id: '/checkout/',
   path: '/checkout/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UsersIdRoute = UsersIdRouteImport.update({
-  id: '/users/$id',
-  path: '/users/$id',
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StablesIdRoute = StablesIdRouteImport.update({
@@ -153,24 +109,44 @@ const StablesIdRoute = StablesIdRouteImport.update({
   path: '/stables/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PaymentSuccessRoute = PaymentSuccessRouteImport.update({
-  id: '/payment/success',
-  path: '/payment/success',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PaymentCancelRoute = PaymentCancelRouteImport.update({
-  id: '/payment/cancel',
-  path: '/payment/cancel',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PackagesIdRoute = PackagesIdRouteImport.update({
   id: '/packages/$id',
   path: '/packages/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRiderRoute = DashboardRiderRouteImport.update({
-  id: '/dashboard/rider',
-  path: '/dashboard/rider',
+const DashboardDriverRoute = DashboardDriverRouteImport.update({
+  id: '/dashboard/driver',
+  path: '/dashboard/driver',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardCxMediaRoute = DashboardCxMediaRouteImport.update({
+  id: '/dashboard/cx-media',
+  path: '/dashboard/cx-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardCaptainRoute = DashboardCaptainRouteImport.update({
+  id: '/dashboard/captain',
+  path: '/dashboard/captain',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardAdminRoute = DashboardAdminRouteImport.update({
+  id: '/dashboard/admin',
+  path: '/dashboard/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminScheduleRoute = AdminScheduleRouteImport.update({
+  id: '/admin/schedule',
+  path: '/admin/schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminHorsesRoute = AdminHorsesRouteImport.update({
+  id: '/admin/horses',
+  path: '/admin/horses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/admin/analytics',
+  path: '/admin/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutPackageIdRoute = CheckoutPackageIdRouteImport.update({
@@ -182,29 +158,25 @@ const CheckoutPackageIdRoute = CheckoutPackageIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/booking': typeof BookingRoute
   '/cercle': typeof CercleRoute
-  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
-  '/forgot-password': typeof ForgotPasswordRoute
   '/gallery': typeof GalleryRoute
-  '/leaderboard': typeof LeaderboardRoute
-  '/pricing': typeof PricingRoute
-  '/privacy': typeof PrivacyRoute
-  '/refund-policy': typeof RefundPolicyRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/reviews': typeof ReviewsRoute
-  '/signin': typeof SigninRoute
-  '/signup': typeof SignupRoute
-  '/terms': typeof TermsRoute
   '/training': typeof TrainingRoute
-  '/dashboard/rider': typeof DashboardRiderRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/horses': typeof AdminHorsesRoute
+  '/admin/schedule': typeof AdminScheduleRoute
+  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/captain': typeof DashboardCaptainRoute
+  '/dashboard/cx-media': typeof DashboardCxMediaRoute
+  '/dashboard/driver': typeof DashboardDriverRoute
   '/packages/$id': typeof PackagesIdRoute
-  '/payment/cancel': typeof PaymentCancelRoute
-  '/payment/success': typeof PaymentSuccessRoute
   '/stables/$id': typeof StablesIdRoute
-  '/users/$id': typeof UsersIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/checkout/': typeof CheckoutIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/packages/': typeof PackagesIndexRoute
   '/stables/': typeof StablesIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
@@ -212,29 +184,25 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/booking': typeof BookingRoute
   '/cercle': typeof CercleRoute
-  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
-  '/forgot-password': typeof ForgotPasswordRoute
   '/gallery': typeof GalleryRoute
-  '/leaderboard': typeof LeaderboardRoute
-  '/pricing': typeof PricingRoute
-  '/privacy': typeof PrivacyRoute
-  '/refund-policy': typeof RefundPolicyRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/reviews': typeof ReviewsRoute
-  '/signin': typeof SigninRoute
-  '/signup': typeof SignupRoute
-  '/terms': typeof TermsRoute
   '/training': typeof TrainingRoute
-  '/dashboard/rider': typeof DashboardRiderRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/horses': typeof AdminHorsesRoute
+  '/admin/schedule': typeof AdminScheduleRoute
+  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/captain': typeof DashboardCaptainRoute
+  '/dashboard/cx-media': typeof DashboardCxMediaRoute
+  '/dashboard/driver': typeof DashboardDriverRoute
   '/packages/$id': typeof PackagesIdRoute
-  '/payment/cancel': typeof PaymentCancelRoute
-  '/payment/success': typeof PaymentSuccessRoute
   '/stables/$id': typeof StablesIdRoute
-  '/users/$id': typeof UsersIdRoute
+  '/admin': typeof AdminIndexRoute
   '/checkout': typeof CheckoutIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/packages': typeof PackagesIndexRoute
   '/stables': typeof StablesIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
@@ -243,29 +211,25 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/booking': typeof BookingRoute
   '/cercle': typeof CercleRoute
-  '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
-  '/forgot-password': typeof ForgotPasswordRoute
   '/gallery': typeof GalleryRoute
-  '/leaderboard': typeof LeaderboardRoute
-  '/pricing': typeof PricingRoute
-  '/privacy': typeof PrivacyRoute
-  '/refund-policy': typeof RefundPolicyRoute
-  '/reset-password': typeof ResetPasswordRoute
   '/reviews': typeof ReviewsRoute
-  '/signin': typeof SigninRoute
-  '/signup': typeof SignupRoute
-  '/terms': typeof TermsRoute
   '/training': typeof TrainingRoute
-  '/dashboard/rider': typeof DashboardRiderRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/horses': typeof AdminHorsesRoute
+  '/admin/schedule': typeof AdminScheduleRoute
+  '/dashboard/admin': typeof DashboardAdminRoute
+  '/dashboard/captain': typeof DashboardCaptainRoute
+  '/dashboard/cx-media': typeof DashboardCxMediaRoute
+  '/dashboard/driver': typeof DashboardDriverRoute
   '/packages/$id': typeof PackagesIdRoute
-  '/payment/cancel': typeof PaymentCancelRoute
-  '/payment/success': typeof PaymentSuccessRoute
   '/stables/$id': typeof StablesIdRoute
-  '/users/$id': typeof UsersIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/checkout/': typeof CheckoutIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/packages/': typeof PackagesIndexRoute
   '/stables/': typeof StablesIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
@@ -275,29 +239,25 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/auth'
     | '/booking'
     | '/cercle'
-    | '/contact'
     | '/faq'
-    | '/forgot-password'
     | '/gallery'
-    | '/leaderboard'
-    | '/pricing'
-    | '/privacy'
-    | '/refund-policy'
-    | '/reset-password'
     | '/reviews'
-    | '/signin'
-    | '/signup'
-    | '/terms'
     | '/training'
-    | '/dashboard/rider'
+    | '/admin/analytics'
+    | '/admin/horses'
+    | '/admin/schedule'
+    | '/dashboard/admin'
+    | '/dashboard/captain'
+    | '/dashboard/cx-media'
+    | '/dashboard/driver'
     | '/packages/$id'
-    | '/payment/cancel'
-    | '/payment/success'
     | '/stables/$id'
-    | '/users/$id'
+    | '/admin/'
     | '/checkout/'
+    | '/dashboard/'
     | '/packages/'
     | '/stables/'
     | '/checkout/package/$id'
@@ -305,29 +265,25 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/auth'
     | '/booking'
     | '/cercle'
-    | '/contact'
     | '/faq'
-    | '/forgot-password'
     | '/gallery'
-    | '/leaderboard'
-    | '/pricing'
-    | '/privacy'
-    | '/refund-policy'
-    | '/reset-password'
     | '/reviews'
-    | '/signin'
-    | '/signup'
-    | '/terms'
     | '/training'
-    | '/dashboard/rider'
+    | '/admin/analytics'
+    | '/admin/horses'
+    | '/admin/schedule'
+    | '/dashboard/admin'
+    | '/dashboard/captain'
+    | '/dashboard/cx-media'
+    | '/dashboard/driver'
     | '/packages/$id'
-    | '/payment/cancel'
-    | '/payment/success'
     | '/stables/$id'
-    | '/users/$id'
+    | '/admin'
     | '/checkout'
+    | '/dashboard'
     | '/packages'
     | '/stables'
     | '/checkout/package/$id'
@@ -335,29 +291,25 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/auth'
     | '/booking'
     | '/cercle'
-    | '/contact'
     | '/faq'
-    | '/forgot-password'
     | '/gallery'
-    | '/leaderboard'
-    | '/pricing'
-    | '/privacy'
-    | '/refund-policy'
-    | '/reset-password'
     | '/reviews'
-    | '/signin'
-    | '/signup'
-    | '/terms'
     | '/training'
-    | '/dashboard/rider'
+    | '/admin/analytics'
+    | '/admin/horses'
+    | '/admin/schedule'
+    | '/dashboard/admin'
+    | '/dashboard/captain'
+    | '/dashboard/cx-media'
+    | '/dashboard/driver'
     | '/packages/$id'
-    | '/payment/cancel'
-    | '/payment/success'
     | '/stables/$id'
-    | '/users/$id'
+    | '/admin/'
     | '/checkout/'
+    | '/dashboard/'
     | '/packages/'
     | '/stables/'
     | '/checkout/package/$id'
@@ -366,29 +318,25 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
   BookingRoute: typeof BookingRoute
   CercleRoute: typeof CercleRoute
-  ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
-  ForgotPasswordRoute: typeof ForgotPasswordRoute
   GalleryRoute: typeof GalleryRoute
-  LeaderboardRoute: typeof LeaderboardRoute
-  PricingRoute: typeof PricingRoute
-  PrivacyRoute: typeof PrivacyRoute
-  RefundPolicyRoute: typeof RefundPolicyRoute
-  ResetPasswordRoute: typeof ResetPasswordRoute
   ReviewsRoute: typeof ReviewsRoute
-  SigninRoute: typeof SigninRoute
-  SignupRoute: typeof SignupRoute
-  TermsRoute: typeof TermsRoute
   TrainingRoute: typeof TrainingRoute
-  DashboardRiderRoute: typeof DashboardRiderRoute
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminHorsesRoute: typeof AdminHorsesRoute
+  AdminScheduleRoute: typeof AdminScheduleRoute
+  DashboardAdminRoute: typeof DashboardAdminRoute
+  DashboardCaptainRoute: typeof DashboardCaptainRoute
+  DashboardCxMediaRoute: typeof DashboardCxMediaRoute
+  DashboardDriverRoute: typeof DashboardDriverRoute
   PackagesIdRoute: typeof PackagesIdRoute
-  PaymentCancelRoute: typeof PaymentCancelRoute
-  PaymentSuccessRoute: typeof PaymentSuccessRoute
   StablesIdRoute: typeof StablesIdRoute
-  UsersIdRoute: typeof UsersIdRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   CheckoutIndexRoute: typeof CheckoutIndexRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
   PackagesIndexRoute: typeof PackagesIndexRoute
   StablesIndexRoute: typeof StablesIndexRoute
   CheckoutPackageIdRoute: typeof CheckoutPackageIdRoute
@@ -403,67 +351,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrainingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/signup': {
-      id: '/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof SignupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/signin': {
-      id: '/signin'
-      path: '/signin'
-      fullPath: '/signin'
-      preLoaderRoute: typeof SigninRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/reviews': {
       id: '/reviews'
       path: '/reviews'
       fullPath: '/reviews'
       preLoaderRoute: typeof ReviewsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/refund-policy': {
-      id: '/refund-policy'
-      path: '/refund-policy'
-      fullPath: '/refund-policy'
-      preLoaderRoute: typeof RefundPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pricing': {
-      id: '/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof PricingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/leaderboard': {
-      id: '/leaderboard'
-      path: '/leaderboard'
-      fullPath: '/leaderboard'
-      preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -473,25 +365,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/forgot-password': {
-      id: '/forgot-password'
-      path: '/forgot-password'
-      fullPath: '/forgot-password'
-      preLoaderRoute: typeof ForgotPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/faq': {
       id: '/faq'
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cercle': {
@@ -506,6 +384,13 @@ declare module '@tanstack/react-router' {
       path: '/booking'
       fullPath: '/booking'
       preLoaderRoute: typeof BookingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -536,6 +421,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PackagesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkout/': {
       id: '/checkout/'
       path: '/checkout'
@@ -543,11 +435,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/users/$id': {
-      id: '/users/$id'
-      path: '/users/$id'
-      fullPath: '/users/$id'
-      preLoaderRoute: typeof UsersIdRouteImport
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/stables/$id': {
@@ -557,20 +449,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StablesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/payment/success': {
-      id: '/payment/success'
-      path: '/payment/success'
-      fullPath: '/payment/success'
-      preLoaderRoute: typeof PaymentSuccessRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/payment/cancel': {
-      id: '/payment/cancel'
-      path: '/payment/cancel'
-      fullPath: '/payment/cancel'
-      preLoaderRoute: typeof PaymentCancelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/packages/$id': {
       id: '/packages/$id'
       path: '/packages/$id'
@@ -578,11 +456,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PackagesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard/rider': {
-      id: '/dashboard/rider'
-      path: '/dashboard/rider'
-      fullPath: '/dashboard/rider'
-      preLoaderRoute: typeof DashboardRiderRouteImport
+    '/dashboard/driver': {
+      id: '/dashboard/driver'
+      path: '/dashboard/driver'
+      fullPath: '/dashboard/driver'
+      preLoaderRoute: typeof DashboardDriverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/cx-media': {
+      id: '/dashboard/cx-media'
+      path: '/dashboard/cx-media'
+      fullPath: '/dashboard/cx-media'
+      preLoaderRoute: typeof DashboardCxMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/captain': {
+      id: '/dashboard/captain'
+      path: '/dashboard/captain'
+      fullPath: '/dashboard/captain'
+      preLoaderRoute: typeof DashboardCaptainRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/admin': {
+      id: '/dashboard/admin'
+      path: '/dashboard/admin'
+      fullPath: '/dashboard/admin'
+      preLoaderRoute: typeof DashboardAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/schedule': {
+      id: '/admin/schedule'
+      path: '/admin/schedule'
+      fullPath: '/admin/schedule'
+      preLoaderRoute: typeof AdminScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/horses': {
+      id: '/admin/horses'
+      path: '/admin/horses'
+      fullPath: '/admin/horses'
+      preLoaderRoute: typeof AdminHorsesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/admin/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout/package/$id': {
@@ -598,29 +518,25 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
   BookingRoute: BookingRoute,
   CercleRoute: CercleRoute,
-  ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
-  ForgotPasswordRoute: ForgotPasswordRoute,
   GalleryRoute: GalleryRoute,
-  LeaderboardRoute: LeaderboardRoute,
-  PricingRoute: PricingRoute,
-  PrivacyRoute: PrivacyRoute,
-  RefundPolicyRoute: RefundPolicyRoute,
-  ResetPasswordRoute: ResetPasswordRoute,
   ReviewsRoute: ReviewsRoute,
-  SigninRoute: SigninRoute,
-  SignupRoute: SignupRoute,
-  TermsRoute: TermsRoute,
   TrainingRoute: TrainingRoute,
-  DashboardRiderRoute: DashboardRiderRoute,
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminHorsesRoute: AdminHorsesRoute,
+  AdminScheduleRoute: AdminScheduleRoute,
+  DashboardAdminRoute: DashboardAdminRoute,
+  DashboardCaptainRoute: DashboardCaptainRoute,
+  DashboardCxMediaRoute: DashboardCxMediaRoute,
+  DashboardDriverRoute: DashboardDriverRoute,
   PackagesIdRoute: PackagesIdRoute,
-  PaymentCancelRoute: PaymentCancelRoute,
-  PaymentSuccessRoute: PaymentSuccessRoute,
   StablesIdRoute: StablesIdRoute,
-  UsersIdRoute: UsersIdRoute,
+  AdminIndexRoute: AdminIndexRoute,
   CheckoutIndexRoute: CheckoutIndexRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
   PackagesIndexRoute: PackagesIndexRoute,
   StablesIndexRoute: StablesIndexRoute,
   CheckoutPackageIdRoute: CheckoutPackageIdRoute,

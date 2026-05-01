@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { SubNav } from "@/components/shared/SubNav";
-import { DashShell, SectionTitle } from "@/components/shared/DashShell";
+import { DashShell, SectionTitle, StatGrid } from "@/components/shared/DashShell";
 import { useAuth } from "@/hooks/use-auth";
 import { fmtMoney } from "@/lib/format";
 
@@ -18,7 +18,13 @@ const DriverAccount = () => {
     <>
       <SubNav kind="driver" />
       <DashShell eyebrow="Driver" title="Account" subtitle="Your details, your vehicle, your earnings.">
-        <div className="grid lg:grid-cols-3 gap-10">
+        <StatGrid stats={[
+          { label: "Today's runs", value: 3, hint: "2 completed · 1 active" },
+          { label: "This week", value: fmtMoney(4830), hint: "12 runs" },
+          { label: "Available", value: fmtMoney(2450), hint: "Ready for payout" },
+          { label: "Rating", value: "4.9 ★", hint: "312 reviews" },
+        ]} />
+        <div className="mt-12 grid lg:grid-cols-3 gap-10">
           <form onSubmit={(e) => { e.preventDefault(); toast.success("Account saved."); }} className="lg:col-span-2 space-y-8">
             <SectionTitle title="Profile" />
             <label className="block">

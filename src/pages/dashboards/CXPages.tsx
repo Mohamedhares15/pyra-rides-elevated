@@ -1,18 +1,26 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { Check, X, MessageSquare, Send } from "lucide-react";
+import { Check, X, Send } from "lucide-react";
 import RoleGuard from "@/components/shared/RoleGuard";
 import { SubNav } from "@/components/shared/SubNav";
 import { DashShell, SectionTitle, StatGrid, Pill } from "@/components/shared/DashShell";
 import { GALLERY_ITEMS } from "@/lib/mock-data/seed";
+import { withOptimistic } from "@/lib/optimistic";
 
 export const CXGalleryPage = () => {
   const [items, setItems] = useState(GALLERY_ITEMS);
   const pending = items.filter((g) => g.status === "pending");
 
   const decide = (id: string, status: "approved" | "rejected") => {
+    const prev = items;
+    // Optimistic update: apply immediately
     setItems((p) => p.map((g) => g.id === id ? { ...g, status } : g));
-    toast.success(status === "approved" ? "Photo approved." : "Photo rejected.");
+    void withOptimistic({
+      optimistic: status === "approved" ? "Photo approved." : "Photo rejected.",
+      run: () => new Promise((r) => setTimeout(r, 350)),
+      onError: () => setItems(prev),
+      errorMessage: "Could not save. Reverted.",
+    });
   };
 
   return (
@@ -29,8 +37,15 @@ export const CXGalleryPage = () => {
         <div className="mt-12">
           <SectionTitle title="Awaiting review" hint={`${pending.length} pending`} />
           {pending.length === 0 ? (
-            <div className="border hairline p-12 text-center bg-surface-elevated/30">
-              <p className="text-sm text-ink-muted">No photos awaiting review.</p>
+            <div className="border hairline p-16 text-center bg-surface-elevated/30">
+              <div className="mx-auto mb-5 size-14 inline-flex items-center justify-center rounded-full border hairline text-ink-muted">
+                <Check className="size-5" />
+              </div>
+              <p className="text-[10px] tracking-luxury uppercase text-ink-muted mb-3">All clear</p>
+              <h3 className="font-display text-3xl">The queue is quiet.</h3>
+              <p className="mt-3 max-w-sm mx-auto text-sm text-ink-soft">
+                Every submitted photo has been reviewed. New uploads will appear here as riders share them.
+              </p>
             </div>
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

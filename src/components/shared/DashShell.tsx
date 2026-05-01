@@ -52,15 +52,18 @@ export const DashTable = <T,>({
   rows,
   columns,
   empty = "Nothing to show.",
+  emptyAction,
 }: {
   rows: T[];
   columns: { key: string; header: string; cell: (row: T) => ReactNode; width?: string }[];
   empty?: string;
+  emptyAction?: ReactNode;
 }) => {
   if (rows.length === 0) {
     return (
       <div className="border hairline p-12 text-center bg-surface-elevated/30">
         <p className="text-sm text-ink-muted">{empty}</p>
+        {emptyAction && <div className="mt-6 flex justify-center">{emptyAction}</div>}
       </div>
     );
   }

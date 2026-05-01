@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem, easeLuxury } from "@/components/shared/Motion";
 import { packages, stables } from "@/data/mock";
 import { cn } from "@/lib/utils";
+import { EmptyState } from "@/components/ui/empty-state";
 
 const FILTERS = [
   { id: "all", label: "All journeys" },
@@ -36,29 +37,34 @@ const Packages = () => {
         </Reveal>
       </section>
 
-      {/* Filter */}
-      <div className="container border-y hairline">
-        <ul className="flex flex-wrap items-center gap-x-8 gap-y-3 py-5">
-          {FILTERS.map((f) => {
-            const active = filter === f.id;
-            return (
-              <li key={f.id}>
-                <button
-                  onClick={() => setFilter(f.id)}
-                  className={cn(
-                    "relative text-[11px] tracking-luxury uppercase pb-1 transition-colors",
-                    active ? "text-foreground" : "text-ink-muted hover:text-foreground",
-                  )}
-                >
-                  {f.label}
-                  {active && (
-                    <motion.span layoutId="pkg-filter-underline" className="absolute left-0 right-0 -bottom-px h-px bg-foreground" />
-                  )}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+      {/* Sticky filter */}
+      <div className="sticky top-20 z-30 bg-background/85 backdrop-blur-md border-y hairline">
+        <div className="container">
+          <ul className="flex flex-wrap items-center gap-x-8 gap-y-3 py-4">
+            {FILTERS.map((f) => {
+              const active = filter === f.id;
+              return (
+                <li key={f.id}>
+                  <button
+                    onClick={() => setFilter(f.id)}
+                    className={cn(
+                      "relative text-[11px] tracking-luxury uppercase pb-1 transition-colors",
+                      active ? "text-foreground" : "text-ink-muted hover:text-foreground",
+                    )}
+                  >
+                    {f.label}
+                    {active && (
+                      <motion.span layoutId="pkg-filter-underline" className="absolute left-0 right-0 -bottom-px h-px bg-foreground" />
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+            <li className="ml-auto text-[10px] tracking-luxury uppercase text-ink-muted tabular-nums">
+              {filtered.length} {filtered.length === 1 ? "journey" : "journeys"}
+            </li>
+          </ul>
+        </div>
       </div>
 
       {/* List */}
@@ -71,44 +77,54 @@ const Packages = () => {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.5, ease: easeLuxury }}
           >
-            <StaggerGroup className="grid gap-10 md:grid-cols-2" gap={0.1}>
-              {filtered.map((p, i) => {
-                const stable = stables.find((s) => s.id === p.stableId);
-                return (
-                  <StaggerItem key={p.id}>
-                    <Link to={`/packages/${p.id}`} className="group block">
-                      <div className="relative aspect-[5/6] overflow-hidden bg-surface">
-                        <motion.img
-                          src={p.image} alt={p.name} loading="lazy"
-                          className="h-full w-full object-cover"
-                          whileHover={{ scale: 1.04 }}
-                          transition={{ duration: 1.2, ease: easeLuxury }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent opacity-90" />
-                        <div className="absolute top-5 left-5 right-5 flex items-center justify-between text-background">
-                          <span className="text-[10px] tracking-luxury uppercase">№ {String(i + 1).padStart(2, "0")}</span>
-                          <span className="text-[10px] tracking-luxury uppercase">{p.duration}</span>
+            {filtered.length === 0 ? (
+              <EmptyState
+                icon={<Sparkles className="size-5" />}
+                eyebrow="Nothing in this estate"
+                title="No journeys here yet."
+                description="The house has not yet curated a journey from this estate. Browse all journeys, or write to the concierge."
+                cta={{ label: "View all journeys", to: "/packages" }}
+              />
+            ) : (
+              <StaggerGroup className="grid gap-10 md:grid-cols-2" gap={0.1}>
+                {filtered.map((p, i) => {
+                  const stable = stables.find((s) => s.id === p.stableId);
+                  return (
+                    <StaggerItem key={p.id}>
+                      <Link to={`/packages/${p.id}`} className="group block">
+                        <div className="relative aspect-[5/6] overflow-hidden bg-surface">
+                          <motion.img
+                            src={p.image} alt={p.name} loading="lazy"
+                            className="h-full w-full object-cover"
+                            whileHover={{ scale: 1.04 }}
+                            transition={{ duration: 1.2, ease: easeLuxury }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent opacity-90" />
+                          <div className="absolute top-5 left-5 right-5 flex items-center justify-between text-background">
+                            <span className="text-[10px] tracking-luxury uppercase">№ {String(i + 1).padStart(2, "0")}</span>
+                            <span className="text-[10px] tracking-luxury uppercase">{p.duration}</span>
+                          </div>
+                          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-background">
+                            <p className="text-[10px] tracking-luxury uppercase text-background/80 mb-2">{stable?.name}</p>
+                            <h3 className="font-display text-3xl md:text-4xl leading-tight">{p.name}</h3>
+                            <p className="mt-1.5 text-background/85">{p.tagline}</p>
+                          </div>
                         </div>
-                        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-background">
-                          <p className="text-[10px] tracking-luxury uppercase text-background/80 mb-2">{stable?.name}</p>
-                          <h3 className="font-display text-3xl md:text-4xl leading-tight">{p.name}</h3>
-                          <p className="mt-1.5 text-background/85">{p.tagline}</p>
+                        <div className="pt-5 flex items-baseline justify-between border-b hairline pb-5 group-hover:border-foreground transition-colors">
+                          <div>
+                            <p className="text-[10px] tracking-luxury uppercase text-ink-muted">From</p>
+                            <p className="font-display text-2xl">${p.price}<span className="text-sm text-ink-muted"> / guest</span></p>
+                          </div>
+                          <span className="inline-flex items-center gap-2 text-[11px] tracking-luxury uppercase text-ink-muted group-hover:text-foreground transition-colors">
+                            View journey <ArrowUpRight className="size-3.5" />
+                          </span>
                         </div>
-                      </div>
-                      <div className="pt-5 flex items-baseline justify-between border-b hairline pb-5 group-hover:border-foreground transition-colors">
-                        <div>
-                          <p className="text-[10px] tracking-luxury uppercase text-ink-muted">From</p>
-                          <p className="font-display text-2xl">${p.price}<span className="text-sm text-ink-muted"> / guest</span></p>
-                        </div>
-                        <span className="inline-flex items-center gap-2 text-[11px] tracking-luxury uppercase text-ink-muted group-hover:text-foreground transition-colors">
-                          View journey <ArrowUpRight className="size-3.5" />
-                        </span>
-                      </div>
-                    </Link>
-                  </StaggerItem>
-                );
-              })}
-            </StaggerGroup>
+                      </Link>
+                    </StaggerItem>
+                  );
+                })}
+              </StaggerGroup>
+            )}
           </motion.div>
         </AnimatePresence>
       </section>

@@ -1,18 +1,26 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { Check, X, MessageSquare, Send } from "lucide-react";
+import { Check, X, Send } from "lucide-react";
 import RoleGuard from "@/components/shared/RoleGuard";
 import { SubNav } from "@/components/shared/SubNav";
 import { DashShell, SectionTitle, StatGrid, Pill } from "@/components/shared/DashShell";
 import { GALLERY_ITEMS } from "@/lib/mock-data/seed";
+import { withOptimistic } from "@/lib/optimistic";
 
 export const CXGalleryPage = () => {
   const [items, setItems] = useState(GALLERY_ITEMS);
   const pending = items.filter((g) => g.status === "pending");
 
   const decide = (id: string, status: "approved" | "rejected") => {
+    const prev = items;
+    // Optimistic update: apply immediately
     setItems((p) => p.map((g) => g.id === id ? { ...g, status } : g));
-    toast.success(status === "approved" ? "Photo approved." : "Photo rejected.");
+    void withOptimistic({
+      optimistic: status === "approved" ? "Photo approved." : "Photo rejected.",
+      run: () => new Promise((r) => setTimeout(r, 350)),
+      onError: () => setItems(prev),
+      errorMessage: "Could not save. Reverted.",
+    });
   };
 
   return (

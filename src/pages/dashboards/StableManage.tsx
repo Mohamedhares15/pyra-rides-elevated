@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { Plus, X } from "lucide-react";
 import { SubNav } from "@/components/shared/SubNav";
 import { DashShell, SectionTitle } from "@/components/shared/DashShell";
 import { STABLES } from "@/lib/mock-data/seed";
@@ -11,6 +12,10 @@ const StableManage = () => {
   const [address, setAddress] = useState(stable.address);
   const [banner, setBanner] = useState(stable.announcementBanner ?? "");
   const [leadTime, setLeadTime] = useState(stable.minLeadTimeHours);
+  const [images, setImages] = useState<string[]>(stable.galleryUrls ?? [stable.imageUrl]);
+
+  const removeImage = (i: number) => setImages((p) => p.filter((_, idx) => idx !== i));
+  const addImage = () => toast("Connect Lovable Cloud to enable image uploads.");
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,7 +36,34 @@ const StableManage = () => {
       <SubNav kind="stable" />
       <DashShell eyebrow="Stable Owner" title="Stable details" subtitle="The information riders see when they find you on the plateau.">
         <form onSubmit={submit} className="grid lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-10">
+            <div>
+              <SectionTitle title="Gallery" hint={`${images.length} images`} />
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {images.map((src, i) => (
+                  <div key={i} className="relative group aspect-[4/3] overflow-hidden border hairline">
+                    <img src={src} alt="" className="w-full h-full object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(i)}
+                      aria-label="Remove"
+                      className="absolute top-2 right-2 size-7 inline-flex items-center justify-center bg-foreground text-background opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <X className="size-3.5" />
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={addImage}
+                  className="aspect-[4/3] border hairline border-dashed flex flex-col items-center justify-center gap-2 text-ink-muted hover:bg-surface-elevated hover:text-foreground hover:border-foreground transition-colors"
+                >
+                  <Plus className="size-5" />
+                  <span className="text-[10px] tracking-luxury uppercase">Add image</span>
+                </button>
+              </div>
+            </div>
+
             <SectionTitle title="Public profile" />
             <Field label="Stable name"><input value={name} onChange={(e) => setName(e.target.value)} className={inp} /></Field>
             <Field label="Description">

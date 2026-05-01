@@ -45,6 +45,33 @@ const DriverActive = () => {
             <h2 className="mt-3 font-display text-4xl">{ACTIVE.guest}</h2>
             <p className="text-sm text-ink-muted">{ACTIVE.party} guest{ACTIVE.party === 1 ? "" : "s"} · pickup at {ACTIVE.pickupAt.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</p>
 
+            {/* Three phase cards */}
+            <div className="mt-8 grid sm:grid-cols-3 gap-3">
+              {([
+                { key: "to-pickup", label: "To pickup", desc: "Drive to guest" },
+                { key: "to-destination", label: "En route", desc: "Drive to stable" },
+                { key: "arrived", label: "Arrived", desc: "Run completed" },
+              ] as const).map((p, i) => {
+                const order = ["to-pickup", "to-destination", "arrived"] as const;
+                const currentIdx = order.indexOf(phase);
+                const isActive = phase === p.key;
+                const isDone = order.indexOf(p.key as typeof phase) < currentIdx;
+                return (
+                  <div
+                    key={p.key}
+                    className={`border hairline p-5 transition-colors ${
+                      isActive ? "bg-foreground text-background border-foreground" :
+                      isDone ? "bg-surface-elevated/60" : "bg-background"
+                    }`}
+                  >
+                    <p className={`text-[10px] tracking-luxury uppercase ${isActive ? "text-background/70" : "text-ink-muted"}`}>Phase {i + 1}</p>
+                    <p className="mt-2 font-display text-xl">{p.label}</p>
+                    <p className={`mt-1 text-xs ${isActive ? "text-background/70" : "text-ink-soft"}`}>{p.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+
             <div className="mt-8 space-y-6">
               <div>
                 <p className="text-[10px] tracking-luxury uppercase text-ink-muted inline-flex items-center gap-1.5"><MapPin className="size-3" /> Pickup</p>

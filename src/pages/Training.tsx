@@ -144,7 +144,7 @@ const Training = () => {
                 </ul>
 
                 <Link
-                  to={`/booking?programme=${p.id}`}
+                  to={`/training/checkout?programme=${p.id}`}
                   className={cn(
                     "mt-10 inline-flex items-center justify-center gap-3 px-6 py-3.5 text-[12px] tracking-[0.2em] uppercase transition-colors group/btn",
                     p.featured

@@ -2,13 +2,6 @@ import { toast } from "sonner";
 
 /**
  * Run an optimistic action with instant toast feedback + rollback on failure.
- *
- *   await withOptimistic({
- *     optimistic: "Saved.",
- *     run: () => fetch(...),
- *     onError: () => setForm(prevForm),
- *     errorMessage: "Could not save.",
- *   });
  */
 export async function withOptimistic<T>(opts: {
   optimistic: string;
@@ -25,6 +18,55 @@ export async function withOptimistic<T>(opts: {
     opts.onError?.();
     return undefined;
   }
+}
+
+/**
+ * Optimistic action with an undo affordance. Applies `apply()` immediately,
+ * shows a toast with an Undo button for `windowMs`, then commits via `commit()`.
+ * If the user clicks Undo before the window closes, `revert()` is called and
+ * commit is skipped.
+ *
+ *   undoableAction({
+ *     message: "Photo approved.",
+ *     apply:  () => setItems(next),
+ *     revert: () => setItems(prev),
+ *     commit: async () => api.approve(id),
+ *   });
+ */
+export function undoableAction(opts: {
+  message: string;
+  apply: () => void;
+  revert: () => void;
+  commit?: () => Promise<unknown> | unknown;
+  windowMs?: number;
+  undoLabel?: string;
+}) {
+  const window = opts.windowMs ?? 5000;
+  opts.apply();
+
+  let undone = false;
+  const timer = setTimeout(async () => {
+    if (undone) return;
+    try {
+      await opts.commit?.();
+    } catch {
+      opts.revert();
+      toast.error("Could not save. Reverted.");
+    }
+  }, window);
+
+  toast(opts.message, {
+    duration: window,
+    action: {
+      label: opts.undoLabel ?? "Undo",
+      onClick: () => {
+        undone = true;
+        clearTimeout(timer);
+        opts.revert();
+        toast.success("Undone.");
+      },
+    },
+  });
 }
 
 /** Promise-toast helper with editorial copy. */

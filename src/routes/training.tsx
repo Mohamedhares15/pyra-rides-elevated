@@ -1,3 +1,2 @@
-import { createFileRoute } from "@tanstack/react-router";
-import Training from "@/pages/Training";
-export const Route = createFileRoute("/training")({ component: Training });
+import { createFileRoute, Outlet } from "@tanstack/react-router";
+export const Route = createFileRoute("/training")({ component: () => <Outlet /> });

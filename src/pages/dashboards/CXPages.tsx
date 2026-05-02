@@ -5,7 +5,7 @@ import RoleGuard from "@/components/shared/RoleGuard";
 import { SubNav } from "@/components/shared/SubNav";
 import { DashShell, SectionTitle, StatGrid, Pill } from "@/components/shared/DashShell";
 import { GALLERY_ITEMS } from "@/lib/mock-data/seed";
-import { withOptimistic } from "@/lib/optimistic";
+import { undoableAction } from "@/lib/optimistic";
 
 export const CXGalleryPage = () => {
   const [items, setItems] = useState(GALLERY_ITEMS);
@@ -13,13 +13,12 @@ export const CXGalleryPage = () => {
 
   const decide = (id: string, status: "approved" | "rejected") => {
     const prev = items;
-    // Optimistic update: apply immediately
-    setItems((p) => p.map((g) => g.id === id ? { ...g, status } : g));
-    void withOptimistic({
-      optimistic: status === "approved" ? "Photo approved." : "Photo rejected.",
-      run: () => new Promise((r) => setTimeout(r, 350)),
-      onError: () => setItems(prev),
-      errorMessage: "Could not save. Reverted.",
+    const next = items.map((g) => (g.id === id ? { ...g, status } : g));
+    undoableAction({
+      message: status === "approved" ? "Photo approved." : "Photo rejected.",
+      apply: () => setItems(next),
+      revert: () => setItems(prev),
+      commit: () => new Promise((r) => setTimeout(r, 200)),
     });
   };
 

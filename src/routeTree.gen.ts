@@ -30,6 +30,7 @@ import { Route as BookingRouteImport } from './routes/booking'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TrainingIndexRouteImport } from './routes/training.index'
 import { Route as StablesIndexRouteImport } from './routes/stables.index'
 import { Route as PackagesIndexRouteImport } from './routes/packages.index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
@@ -183,6 +184,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const TrainingIndexRoute = TrainingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TrainingRoute,
 } as any)
 const StablesIndexRoute = StablesIndexRouteImport.update({
   id: '/stables/',
@@ -476,6 +482,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/': typeof DashboardIndexRoute
   '/packages/': typeof PackagesIndexRoute
   '/stables/': typeof StablesIndexRoute
+  '/training/': typeof TrainingIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
   '/dashboard/admin/academies': typeof DashboardAdminAcademiesRoute
   '/dashboard/admin/horse-changes': typeof DashboardAdminHorseChangesRoute
@@ -523,7 +530,6 @@ export interface FileRoutesByTo {
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
   '/terms': typeof TermsRoute
-  '/training': typeof TrainingRouteWithChildren
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/horses': typeof AdminHorsesRoute
   '/admin/schedule': typeof AdminScheduleRoute
@@ -547,6 +553,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardIndexRoute
   '/packages': typeof PackagesIndexRoute
   '/stables': typeof StablesIndexRoute
+  '/training': typeof TrainingIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
   '/dashboard/admin/academies': typeof DashboardAdminAcademiesRoute
   '/dashboard/admin/horse-changes': typeof DashboardAdminHorseChangesRoute
@@ -619,6 +626,7 @@ export interface FileRoutesById {
   '/dashboard/': typeof DashboardIndexRoute
   '/packages/': typeof PackagesIndexRoute
   '/stables/': typeof StablesIndexRoute
+  '/training/': typeof TrainingIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
   '/dashboard/admin/academies': typeof DashboardAdminAcademiesRoute
   '/dashboard/admin/horse-changes': typeof DashboardAdminHorseChangesRoute
@@ -692,6 +700,7 @@ export interface FileRouteTypes {
     | '/dashboard/'
     | '/packages/'
     | '/stables/'
+    | '/training/'
     | '/checkout/package/$id'
     | '/dashboard/admin/academies'
     | '/dashboard/admin/horse-changes'
@@ -739,7 +748,6 @@ export interface FileRouteTypes {
     | '/signin'
     | '/signup'
     | '/terms'
-    | '/training'
     | '/admin/analytics'
     | '/admin/horses'
     | '/admin/schedule'
@@ -763,6 +771,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/packages'
     | '/stables'
+    | '/training'
     | '/checkout/package/$id'
     | '/dashboard/admin/academies'
     | '/dashboard/admin/horse-changes'
@@ -834,6 +843,7 @@ export interface FileRouteTypes {
     | '/dashboard/'
     | '/packages/'
     | '/stables/'
+    | '/training/'
     | '/checkout/package/$id'
     | '/dashboard/admin/academies'
     | '/dashboard/admin/horse-changes'
@@ -1064,6 +1074,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/training/': {
+      id: '/training/'
+      path: '/'
+      fullPath: '/training/'
+      preLoaderRoute: typeof TrainingIndexRouteImport
+      parentRoute: typeof TrainingRoute
     }
     '/stables/': {
       id: '/stables/'
@@ -1416,12 +1433,14 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface TrainingRouteChildren {
   TrainingCheckoutRoute: typeof TrainingCheckoutRoute
+  TrainingIndexRoute: typeof TrainingIndexRoute
   TrainingAcademyIdCheckoutRoute: typeof TrainingAcademyIdCheckoutRoute
   TrainingAcademyIdIndexRoute: typeof TrainingAcademyIdIndexRoute
 }
 
 const TrainingRouteChildren: TrainingRouteChildren = {
   TrainingCheckoutRoute: TrainingCheckoutRoute,
+  TrainingIndexRoute: TrainingIndexRoute,
   TrainingAcademyIdCheckoutRoute: TrainingAcademyIdCheckoutRoute,
   TrainingAcademyIdIndexRoute: TrainingAcademyIdIndexRoute,
 }

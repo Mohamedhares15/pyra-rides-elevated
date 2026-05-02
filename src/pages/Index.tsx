@@ -5,6 +5,8 @@ import { useRef } from "react";
 import heroImg from "@/assets/hero-pyramids.jpg";
 import { Reveal, StaggerGroup, StaggerItem, easeLuxury } from "@/components/shared/Motion";
 import { stables, packages } from "@/data/mock";
+import { SAMPLE_REVIEWS } from "@/components/reviews/RatingsSection";
+import { Stars } from "@/components/reviews/Stars";
 
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -158,6 +160,41 @@ const Index = () => {
             </StaggerItem>
           ))}
         </StaggerGroup>
+      </section>
+
+      {/* GUEST LETTERS */}
+      <section className="container py-32 md:py-44 border-t hairline">
+        <div className="grid md:grid-cols-12 gap-10 mb-16">
+          <Reveal className="md:col-span-5">
+            <p className="text-[11px] tracking-luxury uppercase text-ink-muted mb-3">Guest letters</p>
+            <h2 className="font-display text-4xl md:text-6xl leading-[1] text-balance">In their own hand.</h2>
+          </Reveal>
+          <Reveal className="md:col-span-6 md:col-start-7 self-end" delay={0.15}>
+            <p className="text-ink-soft text-pretty">A small selection of letters from riders who have spent a morning with us. Read the rest in our archive.</p>
+          </Reveal>
+        </div>
+
+        <StaggerGroup className="grid gap-px bg-hairline border hairline md:grid-cols-3" gap={0.1}>
+          {SAMPLE_REVIEWS.slice(0, 3).map((r) => (
+            <StaggerItem key={r.id}>
+              <article className="h-full bg-background p-8 md:p-10 flex flex-col">
+                <Stars value={r.rating} size="sm" />
+                <h3 className="mt-5 font-display text-2xl leading-tight text-balance">{r.title}</h3>
+                <p className="mt-4 text-ink-soft text-sm leading-relaxed text-pretty line-clamp-5">{r.body}</p>
+                <div className="mt-auto pt-8 border-t hairline">
+                  <p className="font-display text-lg leading-tight">{r.author}</p>
+                  <p className="mt-1 text-[11px] tracking-[0.14em] uppercase text-ink-muted">{r.location} · {r.date}</p>
+                </div>
+              </article>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+
+        <div className="mt-12 flex justify-center">
+          <Link to="/reviews" className="inline-flex items-center gap-3 text-[12px] tracking-[0.2em] uppercase text-ink-muted hover:text-foreground transition-colors">
+            Read all letters <ArrowUpRight className="size-4" />
+          </Link>
+        </div>
       </section>
 
       {/* CTA */}

@@ -36,6 +36,7 @@ import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as CheckoutIndexRouteImport } from './routes/checkout.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as UsersIdRouteImport } from './routes/users.$id'
+import { Route as TrainingCheckoutRouteImport } from './routes/training.checkout'
 import { Route as StablesIdRouteImport } from './routes/stables.$id'
 import { Route as SStableIdRouteImport } from './routes/s.$stableId'
 import { Route as PaymentSuccessRouteImport } from './routes/payment.success'
@@ -212,6 +213,11 @@ const UsersIdRoute = UsersIdRouteImport.update({
   id: '/users/$id',
   path: '/users/$id',
   getParentRoute: () => rootRouteImport,
+} as any)
+const TrainingCheckoutRoute = TrainingCheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => TrainingRoute,
 } as any)
 const StablesIdRoute = StablesIdRouteImport.update({
   id: '/stables/$id',
@@ -463,6 +469,7 @@ export interface FileRoutesByFullPath {
   '/payment/success': typeof PaymentSuccessRoute
   '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
+  '/training/checkout': typeof TrainingCheckoutRoute
   '/users/$id': typeof UsersIdRoute
   '/admin/': typeof AdminIndexRoute
   '/checkout/': typeof CheckoutIndexRoute
@@ -533,6 +540,7 @@ export interface FileRoutesByTo {
   '/payment/success': typeof PaymentSuccessRoute
   '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
+  '/training/checkout': typeof TrainingCheckoutRoute
   '/users/$id': typeof UsersIdRoute
   '/admin': typeof AdminIndexRoute
   '/checkout': typeof CheckoutIndexRoute
@@ -604,6 +612,7 @@ export interface FileRoutesById {
   '/payment/success': typeof PaymentSuccessRoute
   '/s/$stableId': typeof SStableIdRoute
   '/stables/$id': typeof StablesIdRoute
+  '/training/checkout': typeof TrainingCheckoutRoute
   '/users/$id': typeof UsersIdRoute
   '/admin/': typeof AdminIndexRoute
   '/checkout/': typeof CheckoutIndexRoute
@@ -676,6 +685,7 @@ export interface FileRouteTypes {
     | '/payment/success'
     | '/s/$stableId'
     | '/stables/$id'
+    | '/training/checkout'
     | '/users/$id'
     | '/admin/'
     | '/checkout/'
@@ -746,6 +756,7 @@ export interface FileRouteTypes {
     | '/payment/success'
     | '/s/$stableId'
     | '/stables/$id'
+    | '/training/checkout'
     | '/users/$id'
     | '/admin'
     | '/checkout'
@@ -816,6 +827,7 @@ export interface FileRouteTypes {
     | '/payment/success'
     | '/s/$stableId'
     | '/stables/$id'
+    | '/training/checkout'
     | '/users/$id'
     | '/admin/'
     | '/checkout/'
@@ -1094,6 +1106,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/users/$id'
       preLoaderRoute: typeof UsersIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/training/checkout': {
+      id: '/training/checkout'
+      path: '/checkout'
+      fullPath: '/training/checkout'
+      preLoaderRoute: typeof TrainingCheckoutRouteImport
+      parentRoute: typeof TrainingRoute
     }
     '/stables/$id': {
       id: '/stables/$id'
@@ -1396,11 +1415,13 @@ const AuthRouteChildren: AuthRouteChildren = {
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface TrainingRouteChildren {
+  TrainingCheckoutRoute: typeof TrainingCheckoutRoute
   TrainingAcademyIdCheckoutRoute: typeof TrainingAcademyIdCheckoutRoute
   TrainingAcademyIdIndexRoute: typeof TrainingAcademyIdIndexRoute
 }
 
 const TrainingRouteChildren: TrainingRouteChildren = {
+  TrainingCheckoutRoute: TrainingCheckoutRoute,
   TrainingAcademyIdCheckoutRoute: TrainingAcademyIdCheckoutRoute,
   TrainingAcademyIdIndexRoute: TrainingAcademyIdIndexRoute,
 }

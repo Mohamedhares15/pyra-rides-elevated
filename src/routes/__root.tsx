@@ -53,6 +53,12 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@pyrarides" },
+      { name: "twitter:title", content: "PyraRides — Ride at the Pyramids" },
+      { name: "description", content: "Book horse riding experiences at Egypt's Giza and Saqqara Pyramids." },
+      { property: "og:description", content: "Book horse riding experiences at Egypt's Giza and Saqqara Pyramids." },
+      { name: "twitter:description", content: "Book horse riding experiences at Egypt's Giza and Saqqara Pyramids." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e808453b-559a-41bd-b88f-33ed6742daea/id-preview-6c66c525--aceced69-9002-4dbe-ac56-630ec0ae069f.lovable.app-1777810018640.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e808453b-559a-41bd-b88f-33ed6742daea/id-preview-6c66c525--aceced69-9002-4dbe-ac56-630ec0ae069f.lovable.app-1777810018640.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

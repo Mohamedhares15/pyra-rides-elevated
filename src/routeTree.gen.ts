@@ -18,6 +18,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as OfflineRouteImport } from './routes/offline'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as GalleryRouteImport } from './routes/gallery'
@@ -30,6 +31,7 @@ import { Route as BookingRouteImport } from './routes/booking'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UsersIndexRouteImport } from './routes/users.index'
 import { Route as TrainingIndexRouteImport } from './routes/training.index'
 import { Route as StablesIndexRouteImport } from './routes/stables.index'
 import { Route as PackagesIndexRouteImport } from './routes/packages.index'
@@ -125,6 +127,11 @@ const PricingRoute = PricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PartnerRoute = PartnerRouteImport.update({
+  id: '/partner',
+  path: '/partner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OfflineRoute = OfflineRouteImport.update({
   id: '/offline',
   path: '/offline',
@@ -183,6 +190,11 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsersIndexRoute = UsersIndexRouteImport.update({
+  id: '/users/',
+  path: '/users/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TrainingIndexRoute = TrainingIndexRouteImport.update({
@@ -450,6 +462,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/leaderboard': typeof LeaderboardRoute
   '/offline': typeof OfflineRoute
+  '/partner': typeof PartnerRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -483,6 +496,7 @@ export interface FileRoutesByFullPath {
   '/packages/': typeof PackagesIndexRoute
   '/stables/': typeof StablesIndexRoute
   '/training/': typeof TrainingIndexRoute
+  '/users/': typeof UsersIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
   '/dashboard/admin/academies': typeof DashboardAdminAcademiesRoute
   '/dashboard/admin/horse-changes': typeof DashboardAdminHorseChangesRoute
@@ -522,6 +536,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/leaderboard': typeof LeaderboardRoute
   '/offline': typeof OfflineRoute
+  '/partner': typeof PartnerRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -554,6 +569,7 @@ export interface FileRoutesByTo {
   '/packages': typeof PackagesIndexRoute
   '/stables': typeof StablesIndexRoute
   '/training': typeof TrainingIndexRoute
+  '/users': typeof UsersIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
   '/dashboard/admin/academies': typeof DashboardAdminAcademiesRoute
   '/dashboard/admin/horse-changes': typeof DashboardAdminHorseChangesRoute
@@ -594,6 +610,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/leaderboard': typeof LeaderboardRoute
   '/offline': typeof OfflineRoute
+  '/partner': typeof PartnerRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/refund-policy': typeof RefundPolicyRoute
@@ -627,6 +644,7 @@ export interface FileRoutesById {
   '/packages/': typeof PackagesIndexRoute
   '/stables/': typeof StablesIndexRoute
   '/training/': typeof TrainingIndexRoute
+  '/users/': typeof UsersIndexRoute
   '/checkout/package/$id': typeof CheckoutPackageIdRoute
   '/dashboard/admin/academies': typeof DashboardAdminAcademiesRoute
   '/dashboard/admin/horse-changes': typeof DashboardAdminHorseChangesRoute
@@ -668,6 +686,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/leaderboard'
     | '/offline'
+    | '/partner'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
@@ -701,6 +720,7 @@ export interface FileRouteTypes {
     | '/packages/'
     | '/stables/'
     | '/training/'
+    | '/users/'
     | '/checkout/package/$id'
     | '/dashboard/admin/academies'
     | '/dashboard/admin/horse-changes'
@@ -740,6 +760,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/leaderboard'
     | '/offline'
+    | '/partner'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
@@ -772,6 +793,7 @@ export interface FileRouteTypes {
     | '/packages'
     | '/stables'
     | '/training'
+    | '/users'
     | '/checkout/package/$id'
     | '/dashboard/admin/academies'
     | '/dashboard/admin/horse-changes'
@@ -811,6 +833,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/leaderboard'
     | '/offline'
+    | '/partner'
     | '/pricing'
     | '/privacy'
     | '/refund-policy'
@@ -844,6 +867,7 @@ export interface FileRouteTypes {
     | '/packages/'
     | '/stables/'
     | '/training/'
+    | '/users/'
     | '/checkout/package/$id'
     | '/dashboard/admin/academies'
     | '/dashboard/admin/horse-changes'
@@ -884,6 +908,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   LeaderboardRoute: typeof LeaderboardRoute
   OfflineRoute: typeof OfflineRoute
+  PartnerRoute: typeof PartnerRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
@@ -914,6 +939,7 @@ export interface RootRouteChildren {
   DashboardIndexRoute: typeof DashboardIndexRoute
   PackagesIndexRoute: typeof PackagesIndexRoute
   StablesIndexRoute: typeof StablesIndexRoute
+  UsersIndexRoute: typeof UsersIndexRoute
   CheckoutPackageIdRoute: typeof CheckoutPackageIdRoute
   DashboardDriverAccountRoute: typeof DashboardDriverAccountRoute
   DashboardDriverActiveRoute: typeof DashboardDriverActiveRoute
@@ -989,6 +1015,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner': {
+      id: '/partner'
+      path: '/partner'
+      fullPath: '/partner'
+      preLoaderRoute: typeof PartnerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/offline': {
@@ -1073,6 +1106,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/users/': {
+      id: '/users/'
+      path: '/users'
+      fullPath: '/users/'
+      preLoaderRoute: typeof UsersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/training/': {
@@ -1507,6 +1547,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   LeaderboardRoute: LeaderboardRoute,
   OfflineRoute: OfflineRoute,
+  PartnerRoute: PartnerRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   RefundPolicyRoute: RefundPolicyRoute,
@@ -1537,6 +1578,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardIndexRoute: DashboardIndexRoute,
   PackagesIndexRoute: PackagesIndexRoute,
   StablesIndexRoute: StablesIndexRoute,
+  UsersIndexRoute: UsersIndexRoute,
   CheckoutPackageIdRoute: CheckoutPackageIdRoute,
   DashboardDriverAccountRoute: DashboardDriverAccountRoute,
   DashboardDriverActiveRoute: DashboardDriverActiveRoute,

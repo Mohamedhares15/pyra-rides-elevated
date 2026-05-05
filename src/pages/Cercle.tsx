@@ -11,7 +11,7 @@ type Post = {
   id: string;
   authorId: string;
   authorName: string;
-  authorAvatar: string;
+  authorAvatar?: string;
   timeAgo: string;
   body: string;
   image?: string;
